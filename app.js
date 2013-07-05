@@ -16,7 +16,6 @@ app.yui.applyConfig({
 app.set('view', app.yui.view({
     defaultBundle: 'skinbuilder'
 }));
-app.set('port', process.env.PORT || 8666);
 
 app.yui.debugMode();
 app.yui.setCoreFromAppOrigin();
@@ -50,9 +49,41 @@ new Locator({
     .parseBundle(__dirname, {}).then(function (have) {
 
         // listening for traffic only after locator finishes the walking process
-        app.listen(app.get('port'), function () {
-            console.log("Server listening on port " +
-                app.get('port') + " in " + app.get('env') + " mode");
+        app.listen(3000, function () {
+            console.log("Server listening on port 3000 in " + app.get('env') + " mode");
+
+            var request = require("request"),
+                libpath = require("path"),
+                libfs = require("fs"),
+                urls = [
+                    'http://localhost:3000/docs.html',
+                    'http://localhost:3000/index.html'
+                ];
+
+            // generating html file
+            urls.forEach(function (url) {
+                request({
+                    uri: url,
+                }, function(err, response, body) {
+                    var file = libpath.join(__dirname, libpath.basename(url));
+                    if (err) {
+                        console.log('Error fetching: ' + url);
+                        console.error(err);
+                        process.exit(1);
+                        return;
+                    }
+                    try {
+                        libfs.writeFileSync(file, body);
+                    } catch (e) {
+                        console.log('Error writting: ' + file);
+                        console.error(e);
+                        console.error(e.stack);
+                        process.exit(1);
+                    }
+                    console.warn('Writting: ' + file);
+                });
+            });
+
         });
 
     }, function (err) {

@@ -1,0 +1,528 @@
+/*************** Begin styles for the UI display of the color space in this tool *************/
+/* Not needed for a skin */
+#tab-schemes,
+#tab-modules,
+.slider-markup-text-contrast,
+.preview-label {
+    color: {{blockPageTextNormal}};
+}
+.hint, .reset {
+    color: {{blockPageTextLow}};
+}
+
+.help {
+    background-color: {{blockPageTextLow}};
+    color: {{blockPageBackground}};
+}
+.widget-preview-label {
+    border: solid 1px {{blockPageBorderLow}};
+    border-style: solid none none none;
+    color: {{blockPageTextNormal}};
+    font-size: 70%;
+    font-style: normal;
+    margin: 0 0 10px;
+    height: 1.2em;
+    overflow: hidden;
+}
+
+#textarea-style{
+    color: {{blockPageTextHigh}};
+}
+
+.tab-code-textarea-label {
+    color: {{blockPageTextNormal}};
+}
+
+#tabview-controls-container { /*needed a container to be 100% fixed so the tabview-controls could have left and right margin*/
+    background-color: {{blockPageBackground}};
+}
+
+#tabview-controls .yui3-tabview-panel {
+    border: solid 1px;
+    border-color: {{blockPageBorderLow}};
+    background-color: {{blockPageBackground}};
+}
+#tabview-controls-container label {
+    color: {{blockPageTextNormal}};
+}
+#tab-modules #checkboxes-widget,
+#tab-modules #checkboxes-yuicss  { /* group bottom border on checkboxes for modules/widgets */
+    border-bottom: solid 1px {{blockPageRuleLow}};
+    padding-bottom: 0.5em;
+}
+#tab-modules .query-mode-change a {
+    color: {{blockPageTextHigh}};
+}
+#feedback-box {
+    position: absolute;
+    left: 0;
+    top: 30px;
+    border: solid 1px {{blockPageTextLow}};
+    background-color: {{blockPageBorderLow}};
+    padding: {{feedbackPadding}};
+    border-radius: {{feedbackRadius}};
+}
+#feedback-box div {
+    background-color: {{blockPageBackground}};
+    color: {{blockPageTextNormal}};
+}
+.feedback-column {
+    position: relative;
+    width: 75px;
+    height: 77px;
+}
+/*  Buttons for key color and page color editing */
+#tab-palette .bucket-highest {
+    {{blockHighestGradient}};
+    background-color: {{blockHighestBackground}};
+    color: {{blockHighestTextNormal}};
+    border: solid 1px;
+    border-color: {{blockHighestBorderHigh}} {{blockHighestBorderLow}} {{blockHighestBorderLow}} {{blockHighestBorderHigh}};
+}
+#tab-palette .bucket-highest:hover {
+    {{blockHighestHoverGradient}};
+    background-color: {{blockHighestHoverBackground}};
+    color: {{blockHighestHoverTextNormal}};
+    border: solid 1px;
+    border-color: {{blockHighestHoverBorderHigh}} {{blockHighestHoverBorderLow}} {{blockHighestHoverBorderLow}} {{blockHighestHoverBorderHigh}};
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+#tab-palette .bucket-page {
+    {{blockPageGradient}};
+    background-color: {{blockPageBackground}};
+    color: {{blockPageTextNormal}};
+    border: solid 1px;
+    border-color: {{blockPageBorderHigh}} {{blockPageBorderLow}} {{blockPageBorderLow}} {{blockPageBorderHigh}};
+}
+#tab-palette .bucket-page:hover {
+    {{blockPageHoverGradient}};
+    
+    background-color: {{blockPageHoverBackground}};
+    color: {{blockPageHoverTextNormal}};
+    border: solid 1px;
+    border-color: {{blockPageHoverBorderHigh}} {{blockPageHoverBorderLow}} {{blockPageHoverBorderLow}} {{blockPageHoverBorderHigh}};
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+#scrollview-content-horiz li {
+
+    border-bottom-style: none;
+    border-right: solid 1px {{ruleLow}};
+}
+
+/* labels need to be narrower in Skin Preview or they stack over inputs */
+{{yuiCssPrefix}}{{skinName}} .sb-preview-form {{yuiCssPrefix}}form-aligned {{yuiCssPrefix}}control-group label {
+    width: 8em;
+}
+{{yuiCssPrefix}}{{skinName}} .sb-preview-form {{yuiCssPrefix}}form-aligned {{yuiCssPrefix}}controls {
+  margin: 1.5em 0 0 8.35em;
+}
+
+
+/* start elements in the palette */
+
+{{prefix}}{{skinName}} .background {
+    background-color: {{background}};
+    border: solid 1px;
+    border-color: {{borderHigh}} {{borderLow}} {{borderLow}} {{borderHigh}};
+}
+
+{{prefix}}{{skinName}} .text-low {
+    color: {{textLow}};
+}
+
+{{prefix}}{{skinName}} .text-normal {
+    color: {{textNormal}};
+}
+
+{{prefix}}{{skinName}} .text-high {
+    color: {{textHigh}};
+}
+
+{{prefix}}{{skinName}} .rule-low {
+    border-top: solid 1px {{ruleLow}};
+}
+
+{{prefix}}{{skinName}} .rule-high {
+    border-top: solid 1px {{ruleHigh}};
+}
+
+{{prefix}}{{skinName}} .gradient {
+    {{gradient}};
+}
+/* background:hover **************/
+{{prefix}}{{skinName}} .background.show-hover {
+    background-color: {{hoverBackground}};
+    border: solid 1px;
+    border-color: {{hoverBorderHigh}} {{hoverBorderLow}} {{hoverBorderLow}} {{hoverBorderHigh}};
+}
+
+{{prefix}}{{skinName}} .background.show-hover .text-low {
+    color: {{hoverTextLow}};
+}
+
+{{prefix}}{{skinName}} .background.show-hover .text-normal {
+    color: {{hoverTextNormal}};
+}
+
+{{prefix}}{{skinName}} .background.show-hover .text-high {
+    color: {{hoverTextHigh}};
+}
+
+{{prefix}}{{skinName}} .background.show-hover .rule-low {
+    border-top: solid 1px {{hoverRuleLow}};
+}
+
+{{prefix}}{{skinName}} .background.show-hover .rule-high {
+    border-top: solid 1px {{hoverRuleHigh}};
+}
+
+{{prefix}}{{skinName}} .background.show-hover .gradient {
+    {{hoverGradient}};
+}
+
+/* block page ***********************************/
+
+{{prefix}}{{skinName}} .block-page {
+    background-color: {{blockPageBackground}};
+}
+
+{{prefix}}{{skinName}} .block-page {
+    border: solid 1px {{blockPageBorderLow}};
+    border-color: {{blockPageBorderHigh}} {{blockPageBorderLow}} {{blockPageBorderLow}} {{blockPageBorderHigh}};
+}
+
+{{prefix}}{{skinName}} .block-page-text-low {
+    color: {{blockPageTextLow}};
+}
+
+{{prefix}}{{skinName}} .block-page-text-normal {
+    color: {{blockPageTextNormal}};
+}
+
+{{prefix}}{{skinName}} .block-page-text-high {
+    color: {{blockPageTextHigh}};
+}
+
+{{prefix}}{{skinName}} .block-page-rule-low {
+    border-top: solid 1px {{blockPageRuleLow}};
+}
+
+{{prefix}}{{skinName}} .block-page-rule-high {
+    border-top: solid 1px {{blockPageRuleHigh}};
+}
+
+{{prefix}}{{skinName}} .block-page .gradient {
+    {{blockPageGradient}};
+}
+
+/* block page:hover ************************************/
+{{prefix}}{{skinName}} .block-page:hover {
+    background-color: {{blockPageHoverBackground}};
+}
+
+{{prefix}}{{skinName}} .block-page:hover {
+    border: solid 1px {{blockPageHoverBorderLow}};
+    border-color: {{blockPageHoverBorderHigh}} {{blockPageHoverBorderLow}} {{blockPageHoverBorderLow}} {{blockPageHoverBorderHigh}};
+}
+
+{{prefix}}{{skinName}} .block-page:hover .block-page-text-low {
+    color: {{blockPageHoverTextLow}};
+}
+
+{{prefix}}{{skinName}} .block-page:hover .block-page-text-normal {
+    color: {{blockPageHoverTextNormal}};
+}
+
+{{prefix}}{{skinName}} .block-page:hover .block-page-text-high {
+    color: {{blockPageHoverTextHigh}};
+}
+
+{{prefix}}{{skinName}} .block-page:hover .block-page-rule-low {
+    border-top: solid 1px {{blockPageHoverRuleLow}};
+}
+
+{{prefix}}{{skinName}} .block-page:hover .block-page-rule-high {
+    border-top: solid 1px {{blockPageHoverRuleHigh}};
+}
+
+{{prefix}}{{skinName}} .block-page:hover .gradient {
+    {{blockPageHoverGradient}};
+}
+
+
+
+
+/* block low ************************************/
+{{prefix}}{{skinName}} .block-low {
+    background-color: {{blockLowBackground}};
+}
+
+{{prefix}}{{skinName}} .block-low {
+    border: solid 1px {{blockLowBorderLow}};
+    border-color: {{blockLowBorderHigh}} {{blockLowBorderLow}} {{blockLowBorderLow}} {{blockLowBorderHigh}};
+}
+
+{{prefix}}{{skinName}} .block-low-text-low {
+    color: {{blockLowTextLow}};
+}
+
+{{prefix}}{{skinName}} .block-low-text-normal {
+    color: {{blockLowTextNormal}};
+}
+
+{{prefix}}{{skinName}} .block-low-text-high {
+    color: {{blockLowTextHigh}};
+}
+
+{{prefix}}{{skinName}} .block-low-rule-low {
+    border-top: solid 1px {{blockLowRuleLow}};
+}
+
+{{prefix}}{{skinName}} .block-low-rule-high {
+    border-top: solid 1px {{blockLowRuleHigh}};
+}
+
+{{prefix}}{{skinName}} .block-low .gradient {
+    {{blockLowGradient}};
+}
+
+/* block low:hover ************************************/
+{{prefix}}{{skinName}} .block-low:hover {
+    background-color: {{blockLowHoverBackground}};
+}
+
+{{prefix}}{{skinName}} .block-low:hover {
+    border: solid 1px {{blockLowHoverBorderLow}};
+    border-color: {{blockLowHoverBorderHigh}} {{blockLowHoverBorderLow}} {{blockLowHoverBorderLow}} {{blockLowHoverBorderHigh}};
+}
+
+{{prefix}}{{skinName}} .block-low:hover .block-low-text-low {
+    color: {{blockLowHoverTextLow}};
+}
+
+{{prefix}}{{skinName}} .block-low:hover .block-low-text-normal {
+    color: {{blockLowHoverTextNormal}};
+}
+
+{{prefix}}{{skinName}} .block-low:hover .block-low-text-high {
+    color: {{blockLowHoverTextHigh}};
+}
+
+{{prefix}}{{skinName}} .block-low:hover .block-low-rule-low {
+    border-top: solid 1px {{blockLowHoverRuleLow}};
+}
+
+{{prefix}}{{skinName}} .block-low:hover .block-low-rule-high {
+    border-top: solid 1px {{blockLowHoverRuleHigh}};
+}
+
+{{prefix}}{{skinName}} .block-low:hover .gradient {
+    {{blockLowHoverGradient}};
+}
+
+/* block normal *********************************/
+{{prefix}}{{skinName}} .block-normal {
+    background-color: {{blockNormalBackground}};
+}
+
+{{prefix}}{{skinName}} .block-normal {
+    border: solid 1px {{blockNormalBorderLow}};
+    border-color: {{blockNormalBorderHigh}} {{blockNormalBorderLow}} {{blockNormalBorderLow}} {{blockNormalBorderHigh}};
+}
+
+{{prefix}}{{skinName}} .block-normal-text-low {
+    color: {{blockNormalTextLow}};
+}
+
+{{prefix}}{{skinName}} .block-normal-text-normal {
+    color: {{blockNormalTextNormal}};
+}
+
+{{prefix}}{{skinName}} .block-normal-text-high {
+    color: {{blockNormalTextHigh}};
+}
+
+{{prefix}}{{skinName}} .block-normal-rule-low {
+    border-top: solid 1px {{blockNormalRuleLow}};
+}
+
+{{prefix}}{{skinName}} .block-normal-rule-high {
+    border-top: solid 1px {{blockNormalRuleHigh}};
+}
+
+{{prefix}}{{skinName}} .block-normal .gradient {
+    {{blockNormalGradient}};
+}
+
+/* block normal:hover  *********************************/
+{{prefix}}{{skinName}} .block-normal:hover {
+    background-color: {{blockNormalHoverBackground}};
+}
+
+{{prefix}}{{skinName}} .block-normal:hover {
+    border: solid 1px {{blockNormalHoverBorderLow}};
+    border-color: {{blockNormalHoverBorderHigh}} {{blockNormalHoverBorderLow}} {{blockNormalHoverBorderLow}} {{blockNormalHoverBorderHigh}};
+}
+
+{{prefix}}{{skinName}} .block-normal:hover .block-normal-text-low {
+    color: {{blockNormalHoverTextLow}};
+}
+
+{{prefix}}{{skinName}} .block-normal:hover .block-normal-text-normal {
+    color: {{blockNormalHoverTextNormal}};
+}
+
+{{prefix}}{{skinName}} .block-normal:hover .block-normal-text-high {
+    color: {{blockNormalHoverTextHigh}};
+}
+
+{{prefix}}{{skinName}} .block-normal:hover .block-normal-rule-low {
+    border-top: solid 1px {{blockNormalHoverRuleLow}};
+}
+
+{{prefix}}{{skinName}} .block-normal:hover .block-normal-rule-high {
+    border-top: solid 1px {{blockNormalHoverRuleHigh}};
+}
+
+{{prefix}}{{skinName}} .block-normal:hover .gradient {
+    {{blockNormalHoverGradient}};
+}
+
+/* block high *********************************/
+{{prefix}}{{skinName}} .block-high {
+    background-color: {{blockHighBackground}};
+}
+
+{{prefix}}{{skinName}} .block-high {
+    border: solid 1px {{blockHighBorderLow}};
+    border-color: {{blockHighBorderHigh}} {{blockHighBorderLow}} {{blockHighBorderLow}} {{blockHighBorderHigh}};
+}
+
+{{prefix}}{{skinName}} .block-high-text-low {
+    color: {{blockHighTextLow}};
+}
+
+{{prefix}}{{skinName}} .block-high-text-normal {
+    color: {{blockHighTextNormal}};
+}
+
+{{prefix}}{{skinName}} .block-high-text-high {
+    color: {{blockHighTextHigh}};
+}
+
+{{prefix}}{{skinName}} .block-high-rule-low {
+    border-top: solid 1px {{blockHighRuleLow}};
+}
+
+{{prefix}}{{skinName}} .block-high-rule-high {
+    border-top: solid 1px {{blockHighRuleHigh}};
+}
+
+{{prefix}}{{skinName}} .block-high .gradient {
+    {{blockHighGradient}};
+}
+
+/* block high:hover *********************************/
+{{prefix}}{{skinName}} .block-high:hover {
+    background-color: {{blockHighHoverBackground}};
+}
+
+{{prefix}}{{skinName}} .block-high:hover {
+    border: solid 1px {{blockHighHoverBorderLow}};
+    border-color: {{blockHighHoverBorderHigh}} {{blockHighHoverBorderLow}} {{blockHighHoverBorderLow}} {{blockHighHoverBorderHigh}};
+}
+
+{{prefix}}{{skinName}} .block-high:hover .block-high-text-low {
+    color: {{blockHighHoverTextLow}};
+}
+
+{{prefix}}{{skinName}} .block-high:hover .block-high-text-normal {
+    color: {{blockHighHoverTextNormal}};
+}
+
+{{prefix}}{{skinName}} .block-high:hover .block-high-text-high {
+    color: {{blockHighHoverTextHigh}};
+}
+
+{{prefix}}{{skinName}} .block-high:hover .block-high-rule-low {
+    border-top: solid 1px {{blockHighHoverRuleLow}};
+}
+
+{{prefix}}{{skinName}} .block-high:hover .block-high-rule-high {
+    border-top: solid 1px {{blockHighHoverRuleHigh}};
+}
+
+{{prefix}}{{skinName}} .block-high:hover .gradient {
+    {{blockHighHoverGradient}};
+}
+
+/* block highest *********************************/
+{{prefix}}{{skinName}} .block-highest {
+    background-color: {{blockHighestBackground}};
+}
+
+{{prefix}}{{skinName}} .block-highest {
+    border: solid 1px {{blockHighestBorderLow}};
+    border-color: {{blockHighestBorderHigh}} {{blockHighestBorderLow}} {{blockHighestBorderLow}} {{blockHighestBorderHigh}};
+}
+
+{{prefix}}{{skinName}} .block-highest-text-low {
+    color: {{blockHighestTextLow}};
+}
+
+{{prefix}}{{skinName}} .block-highest-text-normal {
+    color: {{blockHighestTextNormal}};
+}
+
+{{prefix}}{{skinName}} .block-highest-text-high {
+    color: {{blockHighestTextHigh}};
+}
+
+{{prefix}}{{skinName}} .block-highest-rule-low {
+    border-top: solid 1px {{blockHighestRuleLow}};
+}
+
+{{prefix}}{{skinName}} .block-highest-rule-high {
+    border-top: solid 1px {{blockHighestRuleHigh}};
+}
+
+{{prefix}}{{skinName}} .block-highest .gradient {
+    {{blockHighestGradient}};
+}
+
+/* block highest:hover *********************************/
+{{prefix}}{{skinName}} .block-highest:hover {
+    background-color: {{blockHighestHoverBackground}};
+}
+
+{{prefix}}{{skinName}} .block-highest:hover {
+    border: solid 1px {{blockHighestHoverBorderLow}};
+    border-color: {{blockHighestHoverBorderHigh}} {{blockHighestHoverBorderLow}} {{blockHighestHoverBorderLow}} {{blockHighestHoverBorderHigh}};
+}
+
+{{prefix}}{{skinName}} .block-highest:hover .block-highest-text-low {
+    color: {{blockHighestHoverTextLow}};
+}
+
+{{prefix}}{{skinName}} .block-highest:hover .block-highest-text-normal {
+    color: {{blockHighestHoverTextNormal}};
+}
+
+{{prefix}}{{skinName}} .block-highest:hover .block-highest-text-high {
+    color: {{blockHighestHoverTextHigh}};
+}
+
+{{prefix}}{{skinName}} .block-highest:hover .block-highest-rule-low {
+    border-top: solid 1px {{blockHighestHoverRuleLow}};
+}
+
+{{prefix}}{{skinName}} .block-highest:hover .block-highest-rule-high {
+    border-top: solid 1px {{blockHighestHoverRuleHigh}};
+}
+
+{{prefix}}{{skinName}} .block-highest:hover .gradient {
+    {{blockHighestHoverGradient}};
+}
+
+/*************** End styles for the UI display of the color space in this tool *************/

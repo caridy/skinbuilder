@@ -20,5 +20,5 @@ Y.Skin.renderers.slider = function (skin) {
 };
 
 }, '0.0.1', {
-    requires: []
+    requires: ['skin']
 });

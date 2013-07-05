@@ -1,0 +1,255 @@
+/********  scrollview-base-skin.css **********************************************/
+{{prefix}}{{skinName}} {{prefix}}scrollview {
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+/******** scrollview-scrollbars-skin.css   (sam) *************************************/
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate(0, 0);
+}
+
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar {{prefix}}scrollview-first,
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar {{prefix}}scrollview-middle,
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar {{prefix}}scrollview-last {
+    border-radius:3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+/*    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAABCAYAAAD9yd/wAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABJJREFUeNpiZGBgSGPAAgACDAAIkABoFyloZQAAAABJRU5ErkJggg==); */
+    background-color: {{scrollbarBackground}};
+    /* opacity */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* IE 8 */
+    filter: alpha(opacity=50); /* IE 5-7 */
+    -moz-opacity: 0.5; /* Netscape */
+    -khtml-opacity: 0.5; /* Safari 1.x */
+    opacity: 0.5;
+}}
+
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar {{prefix}}scrollview-first,
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar {{prefix}}scrollview-last {
+    border-bottom-right-radius:0;
+    border-bottom-left-radius:0;
+
+    -webkit-border-bottom-right-radius:0;
+    -webkit-border-bottom-left-radius:0;
+
+    -moz-border-radius-bottomright:0;
+    -moz-border-radius-bottomleft:0;
+}
+
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar {{prefix}}scrollview-last {
+    border-radius:0;
+    border-bottom-right-radius:3px;
+    border-bottom-left-radius:3px;
+
+    -webkit-border-radius:0;
+    -webkit-border-bottom-right-radius:3px;
+    -webkit-border-bottom-left-radius:3px;
+    -webkit-transform: translate3d(0, 0, 0);
+
+    -moz-border-radius:0;
+    -moz-border-radius-bottomright:3px;
+    -moz-border-radius-bottomleft:3px;
+    -moz-transform: translate(0, 0);
+}
+
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar {{prefix}}scrollview-middle {
+    border-radius:0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+
+    -webkit-transform: translate3d(0,0,0) scaleY(1);
+    -webkit-transform-origin-y: 0;
+
+    -moz-transform: translate(0,0) scaleY(1);
+    -moz-transform-origin: 0 0;
+}
+
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar-horiz {{prefix}}scrollview-first,
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar-horiz {{prefix}}scrollview-last {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 3px;
+
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-left-radius: 3px;
+
+    -moz-border-radius-topright: 0;
+    -moz-border-radius-bottomleft: 3px;
+}
+
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar-horiz {{prefix}}scrollview-last {
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 3px;
+
+    -webkit-border-bottom-left-radius: 0;
+    -webkit-border-top-right-radius: 3px;
+
+    -moz-border-radius-bottomleft: 0;
+    -moz-border-radius-topright: 3px;
+}
+
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar-horiz {{prefix}}scrollview-middle {
+    -webkit-transform: translate3d(0,0,0) scaleX(1);
+    -webkit-transform-origin: 0 0;
+
+    -moz-transform: translate(0,0) scaleX(1);
+    -moz-transform-origin: 0 0;
+}
+
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar-vert-basic {{prefix}}scrollview-child,
+{{prefix}}{{skinName}} {{prefix}}scrollview-scrollbar-horiz-basic {{prefix}}scrollview-child {
+    background-color: #aaa;  /* where does this display? */
+    background-image: none;
+}
+/******** scrollview-scrollbars-core.css *******************************/
+{{prefix}}scrollview-scrollbar {
+    opacity: 1;
+    position: absolute;
+    width: 6px;
+    height: 10px;
+}
+
+{{prefix}}scrollview-scrollbar {
+    top: 0;
+    right: 1px;
+}
+
+{{prefix}}scrollview-scrollbar-horiz {
+    top:auto;
+    height: 8px;
+    width: 20px;
+    bottom: 1px;
+    left: 0;
+}
+
+{{prefix}}scrollview-scrollbar {{prefix}}scrollview-child {
+    position: absolute;
+    right: 0px;
+    display: block;
+    width: 100%;
+    height: 4px;
+}
+
+{{prefix}}scrollview-scrollbar {{prefix}}scrollview-first {
+    top: 0;
+}
+
+{{prefix}}scrollview-scrollbar {{prefix}}scrollview-last {
+    top: 0;
+}
+
+{{prefix}}scrollview-scrollbar {{prefix}}scrollview-middle {
+    position: absolute;
+    top: 4px;
+    height: 1px;
+}
+
+{{prefix}}scrollview-scrollbar-horiz {{prefix}}scrollview-child {
+    display:-moz-inline-stack;
+    display:inline-block;
+    zoom:1;
+    *display:inline;
+
+    top: 0;
+    left: 0;
+    bottom: auto;
+    right: auto;
+}
+
+{{prefix}}scrollview-scrollbar-horiz {{prefix}}scrollview-first,
+{{prefix}}scrollview-scrollbar-horiz {{prefix}}scrollview-last {
+    width: 4px;
+    height: 6px;
+}
+
+{{prefix}}scrollview-scrollbar-horiz {{prefix}}scrollview-middle {
+    top: 0;
+    left: 4px;
+    width: 1px;
+    height: 6px;
+}
+
+{{prefix}}scrollview-scrollbar-vert-basic {
+    height:auto;
+}
+
+{{prefix}}scrollview-scrollbar-vert-basic {{prefix}}scrollview-child {
+    position:static;
+    _overflow:hidden;
+    _line-height:4px;
+}
+
+{{prefix}}scrollview-scrollbar-horiz-basic {
+    width:auto;
+    white-space:nowrap;
+    line-height:6px;
+    _overflow:hidden;
+}
+
+{{prefix}}scrollview-scrollbar-horiz-basic {{prefix}}scrollview-child {
+    position:static;
+
+    padding:0;
+    margin:0;
+
+    top:auto;
+    left:auto;
+    right:auto;
+    bottom:auto;
+}
+/******** scrollview-list-skin.css  (sam) *****************************/
+{{prefix}}{{skinName}} {{prefix}}scrollview {
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+
+{{prefix}}{{skinName}} {{prefix}}scrollview{
+    background-color: {{background}};
+}
+/* For IE 6/7 - needs a background color (above) to pick up events, and zoom, to fill the UL */
+{{prefix}}{{skinName}} {{prefix}}scrollview-vert {{prefix}}scrollview-content {{prefix}}scrollview-item {
+    *zoom:1;
+}
+
+/* For IE7 - needs zoom, otherwise clipped content is not rendered */
+{{prefix}}{{skinName}} {{prefix}}scrollview-vert {{prefix}}scrollview-content {{prefix}}scrollview-list {
+    *zoom:1;
+    list-style:none; /*need these since reset is not required*/
+    padding:0; /*need these since reset is not required*/
+    margin:0; /*need these since reset is not required*/
+}
+
+{{prefix}}{{skinName}} {{prefix}}scrollview-content,
+{{prefix}}{{skinName}} {{prefix}}scrollview-vert {{prefix}}scrollview-content {
+    border:1px solid {{border}}; /* remove the ScrollView border here */
+    /*border-top:0; Remove the top border if needed */
+    background-color: transparent;
+    font-family: HelveticaNeue,arial,helvetica,clean,sans-serif;
+    color:black;
+}
+                                        /*jeff can't find this ... -item class */
+{{prefix}}{{skinName}} {{prefix}}scrollview-vert {{prefix}}scrollview-content {{prefix}}scrollview-item {
+    border-bottom: 1px solid #f00;
+    padding: 15px 20px 16px;   /*jeff: not implemented since can't find -item class */
+    font-size: 100%;
+    font-weight: bold;
+    background-color: #f00;
+    cursor:pointer;
+}
+
+
+/******** These are not needed, just added for presentation ********/
+{{prefix}}{{skinName}} {{prefix}}scrollview-content ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+{{prefix}}{{skinName}} {{prefix}}scrollview-content li {
+    padding: {{itemPadding}};
+    border-bottom: solid 1px {{itemBorderBottom}};
+    color: {{text}};
+}
+{{prefix}}{{skinName}} {{prefix}}scrollview-content li:hover {
+    background: {{itemHoverBackground}};
+    /*border-bottom: solid 1px {{itemHoverBorderBottom}};*/
+    color: {{textHover}};
+}
+/******** end of just added for presentation ********/

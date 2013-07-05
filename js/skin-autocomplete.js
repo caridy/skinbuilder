@@ -18,5 +18,5 @@ Y.Skin.renderers.autocomplete = function (skin) {
 };
 
 }, '0.0.1', {
-    requires: []
+    requires: ['skin']
 });

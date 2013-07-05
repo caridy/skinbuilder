@@ -201,11 +201,10 @@ Skin.prototype = {
             data.yuiCssPrefix = options.yuiCssPrefix;
         }
 
-        return this._replaceVars(template, data);
-        //return Y.Handlebars.compile(template)(data);
+        return template(data);
     }
 };
 
 Y.Skin = Skin;
 
-}, '@VERSION@', {'requires': ['colorspace', 'handlebars', 'skin-space']});
+}, '@VERSION@', {'requires': ['colorspace', 'handlebars']});

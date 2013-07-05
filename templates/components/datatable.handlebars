@@ -1,0 +1,108 @@
+/* basic skin styles */
+{{prefix}}{{skinName}} {{prefix}}datatable-table {
+    margin: 0;
+    padding: 0;
+    font-family: arial, sans-serif;
+    border-collapse: separate;
+    border-spacing: 0;
+    /* IE7- doesn't support border-spacing, but separate is needed for more
+     * reliable dimension calculation for scrollable's header width sync,
+     * and it doesn't hurt to have the declaration here.
+     */
+    /**border-collapse: collapse;*/
+    border: solid 1px {{border}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}datatable-caption {
+    color: {{captionText}};
+    font: italic 85%/1 arial, sans-serif;
+    padding: {{captionPadding}}; /*1em 0;*/
+    text-align: center;
+}
+
+{{prefix}}{{skinName}} {{prefix}}datatable-cell {
+    background-color: {{cellBackground}};
+    color: {{cellText}};
+}
+{{prefix}}{{skinName}} {{prefix}}datatable-cell,
+{{prefix}}{{skinName}} {{prefix}}datatable-header {
+    border-left: 1px solid {{border}}; /*  inner column border */
+    border-width: 0 0 0 1px;
+    font-size: inherit;
+    margin: 0;
+    overflow: visible; /*to make this work where the title is really long */
+    padding: {{cellPadding}};
+}
+{{prefix}}{{skinName}} {{prefix}}datatable-cell:first-child,
+{{prefix}}{{skinName}} {{prefix}}datatable-first-header {
+    border-left-width: 0px;
+}
+
+{{prefix}}{{skinName}} {{prefix}}datatable-header {
+    {{headGradient}};
+    background-color: {{headBackground}};
+    color: {{headText}};
+
+    /*font-weight: normal;*/
+    text-align: left;
+    vertical-align: bottom;
+    white-space: nowrap;
+}
+
+{{prefix}}{{skinName}} {{prefix}}datatable-even {{prefix}}datatable-cell {
+}
+{{prefix}}{{skinName}} {{prefix}}datatable-odd  {{prefix}}datatable-cell  {
+    background-color: {{cellOddBackground}};
+    color: {{cellOddText}};
+}
+/************************  sortable ***************/
+{{prefix}}{{skinName}} {{prefix}}datatable-sortable-column {
+    cursor: pointer;
+}
+
+/* this seems to be just the header of a sorted column */
+{{prefix}}{{skinName}} {{prefix}}datatable-columns {{prefix}}datatable-sorted,
+{{prefix}}{{skinName}} {{prefix}}datatable-sortable-column:hover {
+    background-color: {{headSortedHoverBackground}};
+    color: {{headSortedHoverText}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}datatable-sort-liner {
+    display: block;
+    height: 100%;
+    position: relative;
+    padding-right: 15px;
+    position: relative;
+}
+
+{{prefix}}{{skinName}} {{prefix}}datatable-sort-indicator {
+    position: absolute;
+    right: 0;
+    bottom: .5ex;
+    width: 7px;
+    height: 10px;
+    background: url(assets/images/sort-arrow-sprite.png) no-repeat 0 0;
+    _background: url(assets/images/sort-arrow-sprite-ie.png) no-repeat 0 0;
+    overflow: hidden;
+}
+
+{{prefix}}{{skinName}} {{prefix}}datatable-sorted {{prefix}}datatable-sort-indicator {
+    background-position: 0 -10px;
+}
+{{prefix}}{{skinName}} {{prefix}}datatable-sorted-desc {{prefix}}datatable-sort-indicator {
+    background-position: 0 -20px;
+}
+
+{{prefix}}{{skinName}} {{prefix}}datatable-data {{prefix}}datatable-even {{prefix}}datatable-sorted {
+    background-color: {{cellSortedEvenBackground}};
+    color: {{cellSortedEvenText}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}datatable-data {{prefix}}datatable-odd {{prefix}}datatable-sorted {
+    background-color: {{cellSortedOddBackground}};
+}
+
+/* added */
+{{prefix}}{{skinName}} {{prefix}}datatable-columns {{prefix}}datatable-sorted {
+    background-color: {{headSortedBackground}};
+}

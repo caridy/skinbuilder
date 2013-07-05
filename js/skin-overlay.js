@@ -15,5 +15,5 @@ Y.Skin.renderers.overlay = function (skin) {
 };
 
 }, '0.0.1', {
-    requires: []
+    requires: ['skin']
 });

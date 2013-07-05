@@ -1,0 +1,50 @@
+/* autocomplete-list-core.css ****************************************************/
+{{prefix}}aclist {
+    position: absolute;
+    z-index: 1;
+}
+
+{{prefix}}aclist-hidden { visibility: hidden; }
+
+{{prefix}}aclist-aria {
+    /* Hide from sighted users, show to screen readers. */
+    left: -9999px;
+    position: absolute;
+}
+
+{{prefix}}aclist-list {
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+{{prefix}}aclist-item {
+    cursor: pointer;
+    list-style: none;
+    padding: {{itemPadding}};
+}
+
+{{prefix}}aclist-item-active { outline: #afafaf dotted thin;
+}
+
+/* autocomplete-list-skin.css   (sam) ****************************************************/
+{{prefix}}{{skinName}} {{prefix}}aclist-content {
+    background-color: {{background}};
+    border: solid 1px {{border}};
+    color: {{text}};
+    -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.58);
+    -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.58);
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.15);
+}
+
+{{prefix}}{{skinName}} {{prefix}}aclist-item-hover {
+    background-color: {{itemHoverBackground}};
+    color: {{textHover}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}aclist-item-active {
+    background-color: {{itemActiveBackground}};
+    color: {{textActive}};
+    outline: none;
+}

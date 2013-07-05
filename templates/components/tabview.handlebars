@@ -1,0 +1,70 @@
+{{prefix}}{{skinName}} {{prefix}}tabview-list {
+    border:solid {{listBorderColor}}; /* color between tab list and content */
+    border-width:0 0 5px;
+    zoom:1;
+}
+
+{{prefix}}{{skinName}} {{prefix}}tab {
+    margin:0 0.2em 0 0;
+    padding:1px 0 0; /* gecko: make room for overflow */
+    zoom:1;
+}
+
+{{prefix}}{{skinName}} {{prefix}}tab-selected {
+    margin-bottom:-1px; /* for overlap (mapped to tabview-list border-width) */
+}
+
+{{prefix}}{{skinName}} {{prefix}}tab-label {
+    {{tabGradient}};
+    background-color: {{tabBackground}};
+    border-style: solid;
+    border-color: {{tabBorderHigh}} {{tabBorderLow}} {{tabBorderLow}} {{tabBorderHigh}};
+    border-width: 1px 1px 0 1px;
+    cursor:pointer;
+    font-size:85%;
+    padding: {{paddingTab}};
+    text-decoration:none;
+    color: {{tabText}};
+    border-radius: {{tabRadius}} {{tabRadius}} 0 0;
+}
+
+{{prefix}}{{skinName}} {{prefix}}tab-label:hover,
+{{prefix}}{{skinName}} {{prefix}}tab-label:focus {
+    {{tabHoverGradient}};
+    background-color: {{tabHoverBackground}};
+    color: {{tabHoverText}};
+    border: solid 1px;
+    border-color: {{tabHoverBorderHigh}} {{tabHoverBorderLow}} {{tabHoverBorderLow}} {{tabHoverBorderHigh}};
+    border-bottom: none;
+    outline:0;
+}
+
+{{prefix}}{{skinName}} {{prefix}}tab-selected {{prefix}}tab-label {
+    {{tabSelectedGradient}};
+    background-color: {{tabSelectedBackground}};
+    color: {{tabSelectedText}};
+    border: solid 1px;
+    border-color: {{tabSelectedBorderHigh}} {{tabSelectedBorderLow}} {{tabSelectedBorderLow}} {{tabSelectedBorderHigh}};
+}
+/* separated out hover state for selected tab */
+{{prefix}}{{skinName}} {{prefix}}tab-selected {{prefix}}tab-label:hover,
+{{prefix}}{{skinName}} {{prefix}}tab-selected {{prefix}}tab-label:focus {
+    {{tabSelectedHoverGradient}};
+    background-color: {{tabSelectedHoverBackground}};
+    color: {{tabSelectedHoverText}};
+    border: solid 1px;
+    border-color: {{tabSelectedHoverBorderHigh}} {{tabSelectedHoverBorderLow}} {{tabSelectedHoverBorderLow}} {{tabSelectedHoverBorderHigh}};
+}
+
+
+
+{{prefix}}{{skinName}} {{prefix}}tab-selected {{prefix}}tab-label {
+    padding: {{paddingTabSelected}}; /* raise selected tab */
+}
+
+{{prefix}}{{skinName}} {{prefix}}tabview-panel {
+    background-color: {{panelBackground}};
+    border: 1px solid {{panelBorder}};
+    color: {{panelText}};
+    padding: {{paddingPanel}}; /* content padding */
+}

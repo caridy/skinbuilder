@@ -1,0 +1,440 @@
+/* from node-menunav-core.css *******************************************/
+{{prefix}}menu {{prefix}}menu {
+
+    position: absolute;
+    z-index: 1;
+
+}
+
+
+{{prefix}}menu {{prefix}}shim {
+
+    /*
+        Styles for the <iframe> shim used to prevent <select> elements from poking through
+        submenus in IE < 7.  Note: For peformance, creation of the <iframe> shim for each submenu
+        is deferred until it is initially made visible by the user.
+    */
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    filter: alpha(opacity=0);  /* For IE since it doesn't implement the CSS3 "opacity" property. */
+    border: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+
+}
+
+{{prefix}}menu-hidden {
+
+    /*
+        Position hidden menus outside the viewport boundaries to prevent them from
+        triggering scrollbars on the viewport.
+    */
+
+    top: -10000px;
+    left: -10000px;
+
+    /*
+        Using "visibility:hidden" over "display" none because:
+
+        1)  As the "position" property for submenus is set to "absolute", they are out of
+            the document flow and take up no space.  Therefore, from that perspective use of
+            "display:none" is redundant.
+
+        2)  According to MSDN use of "display:none" is more expensive:
+            "Display is the more expensive of the two CSS properties, so if you are
+            making elements appear and disappear often, visibility will be faster."
+            (See http://msdn.microsoft.com/en-us/library/bb264005(VS.85).aspx)
+    */
+
+    visibility: hidden;
+
+}
+
+{{prefix}}menu li {
+
+    list-style-type: none;
+
+}
+
+{{prefix}}menu ul,
+{{prefix}}menu li {
+
+    margin: 0;
+    padding: 0;
+
+}
+
+{{prefix}}menu-label,
+{{prefix}}menuitem-content {
+
+    text-align: left;
+    white-space: nowrap;
+    display: block;
+
+}
+
+{{prefix}}menu-horizontal li {
+
+    float: left;
+    width: auto;
+
+}
+
+{{prefix}}menu-horizontal li li {
+
+    float: none;
+
+}
+
+{{prefix}}menu-horizontal ul {
+
+    /*
+        Use of "zoom" sets the "hasLayout" property to "true" in IE (< 8).  When "hasLayout" is
+        set to "true", an element can clear its floated descendents.  For more:
+        http://msdn.microsoft.com/en-gb/library/ms533776(VS.85).aspx
+    */
+
+    *zoom: 1;
+
+}
+
+{{prefix}}menu-horizontal ul ul {
+
+    /*
+        No need to clear <ul>s of submenus of horizontal menus since <li>s of submenus
+        aren't floated.
+    */
+
+    *zoom: normal;
+
+}
+
+{{prefix}}menu-horizontal>{{prefix}}menu-content>ul:after {
+
+    /*  Self-clearing solution for Opera, Webkit, Gecko and IE > 7  */
+
+    content: "";
+    display: block;
+    clear: both;
+    line-height: 0;
+    font-size: 0;
+    visibility: hidden;
+
+}
+
+
+/*
+    The following two rules are for IE 7.  Triggering "hasLayout" (via use of "zoom") prevents
+    first-tier submenus from hiding when the mouse is moving from an menu label in a root menu to
+    its corresponding submenu.
+*/
+
+{{prefix}}menu-content {
+
+    *zoom: 1;
+
+}
+
+
+{{prefix}}menu-hidden {{prefix}}menu-content {
+
+    *zoom: normal;
+
+}
+
+
+/*
+    The following two rules are for IE 6 (Standards Mode and Quirks Mode) and IE 7 (Quirks Mode
+    only).  Triggering "hasLayout" (via use of "zoom") fixes a bug in IE where mousing mousing off
+    the text node of menuitem or menu label will incorrectly trigger the mouseout event.
+*/
+
+{{prefix}}menuitem-content,
+{{prefix}}menu-label {
+
+    _zoom: 1;
+
+}
+
+{{prefix}}menu-hidden {{prefix}}menuitem-content,
+{{prefix}}menu-hidden {{prefix}}menu-label {
+
+    _zoom: normal;
+
+}
+
+/* from node-menunav-skin.css   (sam) ***************************************/
+/* Vertical menus and submenus */
+
+{{prefix}}{{skinName}} {{prefix}}menu-content,
+{{prefix}}{{skinName}} {{prefix}}menu {{prefix}}menu {{prefix}}menu-content {
+
+    font-size: 100%;
+    line-height: 1.5;  /* 18px 1.5*/
+    *line-height: 1.45; /* For IE */
+    border: solid 1px {{border}};
+    background-color: {{background}};
+    padding: {{menuContentPadding}}; /*3px 0;*/
+
+}
+
+{{prefix}}{{skinName}} {{prefix}}menu {{prefix}}menu {{prefix}}menu-content {
+
+    font-size: 100%;
+
+}
+
+
+/* Horizontal menus */
+{{prefix}}{{skinName}} {{prefix}}menu-horizontal {{prefix}}menu-content {
+
+    line-height: 2;  /* ~24px */
+    *line-height: 1.9; /* For IE */
+    background: {{horizontalGradient}};
+    background-color: {{horizontalBackground}};
+    padding: 0;
+
+}
+/* 2nd and subsequent {{prefix}}menu-content should not have gradient */
+{{prefix}}{{skinName}} {{prefix}}menu-horizontal {{prefix}}menu-content {{prefix}}menu-content {
+    background: none;
+    background-color: {{horizontalBackground}};
+    box-shadow: 2px 2px 7px rgba(0,0,0, 0.15);
+}
+
+{{prefix}}{{skinName}} {{prefix}}menu ul,
+{{prefix}}{{skinName}} {{prefix}}menu ul ul {
+
+    margin-top: 3px;
+    padding-top: 3px;
+    border-top: solid 1px {{itemSeparator}}; /*separator line between menu items*/
+
+}
+
+{{prefix}}{{skinName}} {{prefix}}menu ul.first-of-type {
+
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+}
+
+{{prefix}}{{skinName}} {{prefix}}menu-horizontal ul {
+
+    padding: 0;
+    margin: 0;
+    border: 0;
+
+}
+
+
+{{prefix}}{{skinName}} {{prefix}}menu li,
+{{prefix}}{{skinName}} {{prefix}}menu {{prefix}}menu li {
+
+    /*
+        For and IE 6 (Strict Mode and Quirks Mode) and IE 7 (Quirks Mode only):
+        Used to collapse superfluous white space between <li> elements that is
+        triggered by the "display" property of the <a> elements being set to
+        "block" by node-menunav-core.css file.
+    */
+
+    _border-bottom: solid 1px #f00;     /* fix me */
+
+}
+
+{{prefix}}{{skinName}} {{prefix}}menu-horizontal li {
+
+    _border-bottom: 0;
+
+}
+
+{{prefix}}{{skinName}} {{prefix}}menubuttonnav li {
+
+    border-right: solid 1px #f00;     /* fix me */
+
+}
+
+{{prefix}}{{skinName}} {{prefix}}splitbuttonnav li {
+
+    border-right: solid 1px {{splitBorderRight}};
+
+}
+
+{{prefix}}{{skinName}} {{prefix}}menubuttonnav li li,
+{{prefix}}{{skinName}} {{prefix}}splitbuttonnav li li {
+
+    border-right: 0;
+
+}
+
+
+/* Menuitems and menu labels */
+
+
+{{prefix}}{{skinName}} {{prefix}}menu-label,
+{{prefix}}{{skinName}} {{prefix}}menu {{prefix}}menu {{prefix}}menu-label,
+{{prefix}}{{skinName}} {{prefix}}menuitem-content,
+{{prefix}}{{skinName}} {{prefix}}menu {{prefix}}menu {{prefix}}menuitem-content {
+
+    padding: {{itemPadding}};
+    color: {{text}};
+    text-decoration: none;
+    cursor: default;
+
+    /*
+        Necessary specify values for border, position and margin to override
+        values specified in the selectors that follow.
+    */
+
+    float: none;
+    border: 0;
+    margin: 0;
+
+}
+
+{{prefix}}{{skinName}} {{prefix}}menu-horizontal {{prefix}}menu-label,
+{{prefix}}{{skinName}} {{prefix}}menu-horizontal {{prefix}}menuitem-content {
+
+    padding: {{horizontalLabelPadding}};
+    border-style: solid;
+    border-color: {{border}};
+    border-width: 1px 0;
+    margin: -1px 0;
+
+    float: left;    /*  Ensures that menu labels clear floated descendents.
+                        Also gets negative margins working in IE 7
+                        (Strict Mode). */
+    width: auto;
+
+}
+{{prefix}}{{skinName}} {{prefix}}menu-label,
+{{prefix}}{{skinName}} {{prefix}}menu {{prefix}}menu {{prefix}}menu-label {
+    background: url(assets/images/vertical-menu-submenu-indicator.png) right center no-repeat;
+}
+
+{{prefix}}{{skinName}} {{prefix}}menu-horizontal {{prefix}}menu-label {
+    background: none;
+}
+
+{{prefix}}{{skinName}} {{prefix}}menubuttonnav {{prefix}}menu-label,
+{{prefix}}{{skinName}} {{prefix}}splitbuttonnav {{prefix}}menu-label {
+    background-image: none;
+}
+
+{{prefix}}{{skinName}} {{prefix}}menubuttonnav {{prefix}}menu-label {
+    padding-right: 0;
+}
+
+{{prefix}}{{skinName}} {{prefix}}menubuttonnav {{prefix}}menu-label em {
+    font-style: normal;
+    padding-right: 20px;
+    display: block;
+    background: url(assets/images/horizontal-menu-submenu-indicator.png) right center no-repeat;
+}
+
+
+{{prefix}}{{skinName}} {{prefix}}splitbuttonnav {{prefix}}menu-label {
+    padding: 0;
+}
+
+{{prefix}}{{skinName}} {{prefix}}splitbuttonnav {{prefix}}menu-label a {
+    float: left;
+    width: auto;
+    color: {{text}};
+    text-decoration: none;
+    cursor: default;
+    padding: {{splitButtonNavPadding}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}splitbuttonnav {{prefix}}menu-label {{prefix}}menu-toggle {
+
+    padding: {{togglePadding}}; /* added top and bottom padding to match menu-label. Overide padding applied by the preceeding rule. */
+    border-left: solid 1px {{splitBorderLeft}};
+    width: 15px;
+    overflow: hidden;
+    text-indent: -1000px;
+    background: url(assets/images/horizontal-menu-submenu-indicator.png) 3px center no-repeat;
+
+}
+
+
+/* Selected menuitem */
+
+{{prefix}}{{skinName}} {{prefix}}menu-label-active,
+{{prefix}}{{skinName}} {{prefix}}menu-label-menuvisible,
+{{prefix}}{{skinName}} {{prefix}}menu {{prefix}}menu {{prefix}}menu-label-active,
+{{prefix}}{{skinName}} {{prefix}}menu {{prefix}}menu {{prefix}}menu-label-menuvisible {
+
+/* this is a menu item that has a child menu */
+
+    background-color: {{itemActiveBackground}};
+    color: {{itemAcitveText}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}menuitem-active {{prefix}}menuitem-content,
+{{prefix}}{{skinName}} {{prefix}}menu {{prefix}}menu {{prefix}}menuitem-active {{prefix}}menuitem-content {
+    background-image: none;
+    background: none;  /* supress menuitems from having gradients */
+    background-color: {{itemActiveBackground}};
+    /*
+        Undo values set for "border-left-width" and "margin-left" when the root
+        menu has a class of "yui-menubuttonnav" or "yui-splitbuttonnav" applied.
+    */
+
+    border-left-width: 0;
+    margin-left: 0;
+
+}
+
+{{prefix}}{{skinName}} {{prefix}}menu-horizontal {{prefix}}menu-label-active,
+{{prefix}}{{skinName}} {{prefix}}menu-horizontal {{prefix}}menuitem-active {{prefix}}menuitem-content,
+{{prefix}}{{skinName}} {{prefix}}menu-horizontal {{prefix}}menu-label-menuvisible {
+
+    border-color: {{itemActiveHorizontalBorder}};
+    background: {{itemActiveHorizontalBackgroundGradient}};
+    background-color: {{itemActiveHorizontalBackgroundColor}};
+    color: {{itemAcitveText}};
+}
+
+/* this keeps the background of a submenu from getting the active color when it is first made visible, before you cursor over it.*/
+{{prefix}}{{skinName}} {{prefix}}menu-horizontal {{prefix}}menuitem-active {{prefix}}menu {{prefix}}menuitem-content{
+    background: none;
+    background-color: transparent;
+    color: {{text}};
+}
+
+/* protects the items in a menu from having a gradient when hovered over */
+{{prefix}}{{skinName}} {{prefix}}menu-horizontal {{prefix}}menuitem-active {{prefix}}menuitem-content {
+    background: {{itemActiveHorizontalBackgroundGradient}};
+    background-color: {{itemActiveHorizontalBackgroundColor}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}menubuttonnav {{prefix}}menu-label-active,
+{{prefix}}{{skinName}} {{prefix}}menubuttonnav {{prefix}}menuitem-active {{prefix}}menuitem-content,
+{{prefix}}{{skinName}} {{prefix}}menubuttonnav {{prefix}}menu-label-menuvisible,
+{{prefix}}{{skinName}} {{prefix}}splitbuttonnav {{prefix}}menu-label-active a,
+{{prefix}}{{skinName}} {{prefix}}splitbuttonnav {{prefix}}menuitem-active {{prefix}}menuitem-content,
+{{prefix}}{{skinName}} {{prefix}}splitbuttonnav {{prefix}}menu-label-menuvisible a {
+
+    border-left-width: 1px;
+    color: {{itemAcitveText}};
+
+}
+
+{{prefix}}{{skinName}} {{prefix}}splitbuttonnav {{prefix}}menu-label-menuvisible {
+
+    background: transparent;
+
+}
+
+{{prefix}}{{skinName}} {{prefix}}splitbuttonnav {{prefix}}menu-label-menuvisible {{prefix}}menu-toggle {
+
+    background-color: {{itemActiveBackground}};
+
+}

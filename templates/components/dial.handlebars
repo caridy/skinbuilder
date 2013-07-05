@@ -1,0 +1,120 @@
+
+/** dial-core.css *******************************/
+v\:oval,
+v\:shadow,
+v\:fill {
+    behavior: url(#default#VML);
+    display: inline-block;
+     *display: inline;
+     zoom: 1;
+}
+{{prefix}}dial{
+    position:relative;
+    display:-moz-inline-stack;
+    display:inline-block;
+    zoom:1;
+    *display:inline;
+    /*text-align:center;   This causes problems with the angle calc with longer labels*/
+}
+{{prefix}}dial-content,
+{{prefix}}dial-ring{
+    position:relative;
+}
+{{prefix}}dial-handle,
+{{prefix}}dial-marker,
+{{prefix}}dial-center-button,
+{{prefix}}dial-reset-string,
+{{prefix}}dial-handle-vml,
+{{prefix}}dial-marker-vml,
+{{prefix}}dial-center-button-vml,
+{{prefix}}dial-ring-vml v\:oval,
+{{prefix}}dial-center-button-vml v\:oval
+{
+    position:absolute;
+}
+{{prefix}}dial-center-button-vml v\:oval {
+    font-size:1px;
+    top:0;
+    left:0;
+}
+{{prefix}}dial-content {{prefix}}dial-ring {{prefix}}dial-hidden v\:oval,
+{{prefix}}dial-content {{prefix}}dial-ring {{prefix}}dial-hidden {
+    /* [#2530206] using opacity instead of display:none;. display:none was mis-positioning the marker when we set the dial value on ring mousedown. */
+    opacity:0;
+    filter:alpha(opacity=0);
+}
+
+/** dial-skin.css  (sam) *******************************/
+{{prefix}}{{skinName}} {{prefix}}dial-handle{ /*container. top left corner used for trig positioning*/
+    background-color: {{handle}};
+    opacity:0.3;
+    -moz-box-shadow:1px 1px 1px rgba(0, 0, 0, 0.9) inset;
+    /*-webkit-box-shadow:1px 1px 1px rgba(0, 0, 0, 0.9) inset; Chrome 7/Win bug*/
+    cursor:pointer;
+    font-size:1px;
+}
+{{prefix}}{{skinName}} {{prefix}}dial-ring {
+    background: {{ringGradient}};
+    background-color: {{ringBackgroundColor}};
+    box-shadow:1px 1px 5px rgba(0, 0, 0, 0.4) inset;
+    -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4) inset; /*Chrome 7/Win bug*/
+    -moz-box-shadow:1px 1px 5px rgba(0, 0, 0, 0.4) inset;
+}
+{{prefix}}{{skinName}} {{prefix}}dial-center-button{
+    background: {{centerButtonGradient}};
+    background-color: {{centerButtonBackgroundColor}};
+    box-shadow:-1px -1px 2px rgba(0, 0, 0, 0.3) inset, 1px 1px 2px rgba(0, 0, 0, 0.5);
+    cursor:pointer;
+    opacity:0.7;
+    /*text-align:center;*/
+}
+{{prefix}}{{skinName}} {{prefix}}dial-reset-string{
+    color: {{centerButtonText}};
+    font-size:85%;
+    text-decoration:underline;
+}
+{{prefix}}{{skinName}} {{prefix}}dial-label{
+    color:    {{label}}; /* this sits directly on page background */
+    margin-bottom:0.8em;
+}
+{{prefix}}{{skinName}} {{prefix}}dial-value-string{
+    margin-left:0.5em;
+    color: {{valueString}};   /*this sits directly on page background */
+    font-size:130%;
+}
+{{prefix}}{{skinName}} {{prefix}}dial-value {
+    visibility:visible;
+    position:absolute;
+    top:0;
+    left:0;
+    width:4em;
+}
+
+{{prefix}}{{skinName}} {{prefix}}dial-north-mark{
+    position:absolute;
+    border-left:2px solid {{northMark}};
+    height:5px;
+    width:10px;
+    left:50%;
+    top:-7px;
+    font-size:1px;
+}
+{{prefix}}{{skinName}} {{prefix}}dial-marker {
+    background-color: {{marker}};
+    opacity:0.2;
+    font-size:1px;
+}
+{{prefix}}{{skinName}} {{prefix}}dial-marker-max-min{
+    background-color:#AB3232;  /*red for max/min*/
+    opacity:0.6;
+}
+{{prefix}}{{skinName}} {{prefix}}dial-ring-vml,
+{{prefix}}{{skinName}} {{prefix}}dial-center-button-vml,
+{{prefix}}{{skinName}} {{prefix}}dial-marker v\:oval{{prefix}}dial-marker-max-min,
+{{prefix}}{{skinName}} v\:oval{{prefix}}dial-marker-max-min,
+{{prefix}}{{skinName}} {{prefix}}dial-marker-vml,
+{{prefix}}{{skinName}} {{prefix}}dial-handle-vml {
+    background: none;
+    opacity:0;
+}
+/********************************/

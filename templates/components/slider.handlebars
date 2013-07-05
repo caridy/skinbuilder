@@ -1,0 +1,138 @@
+/** slider-base-core.css *********************************************/
+{{prefix}}slider,
+{{prefix}}slider-rail {
+    /* xbrowser inline-block styles */
+    display: -moz-inline-stack; /* FF2 */
+    display: inline-block;
+    *display: inline; /* IE 7- (with zoom) */
+    zoom: 1;
+    vertical-align: middle;
+}
+
+{{prefix}}slider-content {
+    position: relative;
+    display: block;
+}
+{{prefix}}slider-rail {
+    position: relative;
+}
+
+{{prefix}}slider-rail-cap-top,
+{{prefix}}slider-rail-cap-left,
+{{prefix}}slider-rail-cap-bottom,
+{{prefix}}slider-rail-cap-right,
+{{prefix}}slider-thumb,
+{{prefix}}slider-thumb-image,
+{{prefix}}slider-thumb-shadow {
+    position: absolute;
+}
+
+{{prefix}}slider-thumb {
+    overflow: hidden;
+}
+
+
+/** slider-base-skin.css (sam)***************************************/
+/* Horizontal Slider */
+
+/* Use thumbUrl /build/slider-base/assets/skins/sam/thumb-x.png */
+
+{{prefix}}{{skinName}} {{prefix}}slider-x {{prefix}}slider-rail,
+{{prefix}}{{skinName}} {{prefix}}slider-x {{prefix}}slider-rail-cap-left,
+{{prefix}}{{skinName}} {{prefix}}slider-x {{prefix}}slider-rail-cap-right {
+    background-image: none;
+}
+
+{{prefix}}{{skinName}} {{prefix}}slider-x {{prefix}}slider-rail {
+    height: 26px;
+}
+{{prefix}}{{skinName}} {{prefix}}slider-x {{prefix}}slider-thumb {
+    background-color: {{thumbBackground}};
+    height: 18px;
+    width: 12px;
+    border: solid 1px {{thumbBorderLight}};
+    border-color: {{thumbBorderLight}} {{thumbBorderDark}} {{thumbBorderDark}} {{thumbBorderLight}};
+    border-radius: {{thumbRadius}};
+    margin-top: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15), -1px -1px 3px rgba(0, 0, 0, 0.15) inset;
+}
+
+{{prefix}}{{skinName}} {{prefix}}slider-x {{prefix}}slider-rail-cap-left {
+    background-color: {{railBackground}};
+    font-size: 1px; /* for IE 6 */
+    height: 2px;
+    left: -4px;
+    width: 100%;
+    border: solid 1px #ddd;
+    border-color: {{railBorderDark}} {{railBorderLight}} {{railBorderLight}} {{railBorderDark}};
+    border-right: none;
+    margin-top: 0.5em;
+    border-radius: 2px 0 0 2px;
+}
+{{prefix}}{{skinName}} {{prefix}}slider-x {{prefix}}slider-rail-cap-right {
+    background-color: {{railBackground}};
+    font-size: 1px; /* for IE 6 */
+    height: 2px;
+    right: -4px;
+    width: 8px;
+    border: solid 1px #ddd;
+    border-color: {{railBorderDark}} {{railBorderLight}} {{railBorderLight}} {{railBorderDark}};
+    border-left: none;
+    margin-top: 0.5em;
+    border-radius: 0 2px 2px 0;
+}
+
+{{prefix}}{{skinName}} {{prefix}}slider-x {{prefix}}slider-thumb-image,
+{{prefix}}{{skinName}} {{prefix}}slider-x {{prefix}}slider-thumb-shadow {
+    display: none;
+}
+
+/* Vertical Slider */
+
+{{prefix}}{{skinName}} {{prefix}}slider-y {{prefix}}slider-rail,
+{{prefix}}{{skinName}} {{prefix}}slider-y {{prefix}}slider-rail-cap-top,
+{{prefix}}{{skinName}} {{prefix}}slider-y {{prefix}}slider-rail-cap-bottom {
+    background-image: none;
+}
+
+{{prefix}}{{skinName}} {{prefix}}slider-y {{prefix}}slider-rail {
+    width: 26px;
+}
+{{prefix}}{{skinName}} {{prefix}}slider-y {{prefix}}slider-thumb {
+    background-color: {{thumbBackground}};
+    height: 12px;
+    width: 18px;
+    border: solid 1px {{thumbBorderLight}};
+    border-color: {{thumbBorderLight}} {{thumbBorderDark}} {{thumbBorderDark}} {{thumbBorderLight}};
+    border-radius: {{thumbRadiusY}};
+    margin-left: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15), -1px -1px 3px rgba(0, 0, 0, 0.15) inset;
+}
+
+{{prefix}}{{skinName}} {{prefix}}slider-y {{prefix}}slider-rail-cap-top {
+    background-color: {{railBackground}};
+    width: 2px;
+    top: -4px;
+    height: 100%;
+    border: solid 1px #ddd;
+    border-color: {{railBorderDark}} {{railBorderLight}} {{railBorderLight}} {{railBorderDark}};
+    border-bottom: none;
+    margin-left: 0.5em;
+    border-radius: 2px 2px 0 0;
+}
+{{prefix}}{{skinName}} {{prefix}}slider-y {{prefix}}slider-rail-cap-bottom {
+    background-color: {{railBackground}};
+    width: 2px;
+    bottom: -4px;
+    height: 8px;
+    border: solid 1px #ddd;
+    border-color: {{railBorderDark}} {{railBorderLight}} {{railBorderLight}} {{railBorderDark}};
+    border-top: none;
+    margin-left: 0.5em;
+    border-radius: 0 0 2px 2px;
+}
+
+{{prefix}}{{skinName}} {{prefix}}slider-y {{prefix}}slider-thumb-image,
+{{prefix}}{{skinName}} {{prefix}}slider-y {{prefix}}slider-thumb-shadow {
+    display: none;
+}

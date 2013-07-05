@@ -1,0 +1,113 @@
+/** from panel-core.css *****************************************/
+{{prefix}}panel {
+    position: absolute;
+}
+{{prefix}}panel-hidden {
+    visibility: hidden;
+}
+{{prefix}}widget-tmp-forcesize {{prefix}}panel-content {
+    overflow: hidden !important;
+}
+{{prefix}}panel {{prefix}}widget-hd {
+    position: relative;
+}
+{{prefix}}panel {{prefix}}widget-hd {{prefix}}widget-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+{{prefix}}panel {{prefix}}widget-ft {{prefix}}widget-buttons {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+
+/** from panel-skin.css (sam)***************************************/
+{{prefix}}{{skinName}} {{prefix}}panel-content {
+    -webkit-box-shadow: 2 2 7px rgba(0,0,0,0.15);
+    -moz-box-shadow: 2 2 7px rgba(0,0,0,0.15);
+    box-shadow: 2px 2px 7px rgba(0,0,0,0.15);
+    border: solid 1px {{border}};
+    background-color: {{background}};
+    color: {{text}};
+    border-radius: {{panelRadius}};
+}
+{{prefix}}{{skinName}} {{prefix}}panel {{prefix}}widget-hd {
+    padding: {{hdPadding}}; /* Room for close button. */
+    padding-right: 40px; /* Room for Close button */
+    min-height: 13px;           /* For the close button */
+    _height: 13px;              /* IE6 */
+    color: {{headText}};
+    background: {{headGradient}};
+    background-color: {{headBackground}};
+    border-radius: {{panelRadius}} {{panelRadius}} 0 0;
+
+
+    /*
+    TODO: Add support for IE and W3C gradients
+    */
+}
+{{prefix}}{{skinName}} {{prefix}}panel {{prefix}}widget-hd {{prefix}}widget-buttons {
+    padding: {{hdButtonPadding}};
+}
+{{prefix}}{{skinName}} {{prefix}}panel {{prefix}}widget-bd {
+    padding: {{bdPadding}};
+}
+{{prefix}}{{skinName}} {{prefix}}panel {{prefix}}widget-ft {
+    background: {{footBackground}};
+    padding: {{ftPadding}};
+    text-align: right;
+    border-radius: 0 0 {{panelRadius}} {{panelRadius}};
+}
+{{prefix}}{{skinName}} {{prefix}}panel {{prefix}}widget-ft {{prefix}}button {
+    margin-left: 8px;
+}
+
+/*
+Support for icon-based [x] "close" button in the header.
+
+Nicolas Gallagher: "CSS image replacement with pseudo-elements (NIR)"
+http://nicolasgallagher.com/css-image-replacement-with-pseudo-elements/
+*/
+{{prefix}}{{skinName}} {{prefix}}panel {{prefix}}widget-hd {{prefix}}button-close {
+    /* Reset base button styles */
+    background: transparent;
+    filter: none;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    /* Structure */
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    overflow: hidden;
+    vertical-align: top;
+    /* IE less than 8 :( */
+    *font-size: 0;
+    *line-height: 0;
+    *letter-spacing: -1000px;
+    *color: #86A5EC;
+    *background: url(assets/images/sprite_icons.png) no-repeat 1px 1px;
+}
+{{prefix}}{{skinName}} {{prefix}}panel {{prefix}}widget-hd {{prefix}}button-close:before {
+    /*
+    Displays the [x] icon in place of the "Close" text.
+    Note: The `width` of this pseudo element is the same as its "host" element.
+    */
+    content: url(assets/images/sprite_icons.png);
+    display: inline-block;
+    text-align: center;
+    font-size: 0;
+    line-height: 0;
+    width: 13px;
+    margin: 1px 0 0 1px;
+}
+{{prefix}}{{skinName}} {{prefix}}panel-hidden {{prefix}}widget-hd {{prefix}}button-close {
+    /* Required for IE > 7 to deal with pseudo :before element */
+    display: none;
+}

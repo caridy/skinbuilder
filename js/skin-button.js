@@ -36,5 +36,5 @@ Y.Skin.renderers.button = function (skin) {
 };
 
 }, '0.0.1', {
-    requires: []
+    requires: ['skin']
 });

@@ -1,0 +1,143 @@
+{{prefix}}{{skinName}} {{prefix}}button {
+    /* Structure */
+    display: inline-block;
+    *display: inline; /*IE 6/7*/
+    zoom: 1;
+    font-size: 100%;
+    *font-size: 90%; /*IE 6/7 - To reduce IE's oversized button text*/
+    *overflow: visible; /*IE 6/7 - Because of IE's overly large left/right padding on buttons */
+    padding: {{padding}}; /*0.4em 1em 0.45em;*/
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: baseline;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+    /* Presentation */
+    /*color: #444;  rgba not supported (IE 8) */
+    /*color: rgba(0, 0, 0, 0.80);  rgba supported */
+    /**color: #444;  IE 6 & 7 */
+    color: {{text}};
+    /*border: 1px solid #999;  IE 6/7/8*/
+    /*border: none rgba(0, 0, 0, 0);  IE9 + everything else*/
+    border: solid 1px;
+    border-color: {{borderHigh}} {{borderLow}} {{borderLow}} {{borderHigh}};
+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80ffffff', endColorstr='#00ffffff', GradientType=0);
+    background: {{gradient}};
+    background-color: {{background}};
+
+    text-decoration: none;
+    -webkit-border-radius: {{buttonRadius}};
+    -moz-border-radius: {{buttonRadius}};
+    border-radius: {{buttonRadius}};
+    -webkit-box-shadow: 0 0 1px rgba(0,0,0, 0.25) inset, 0 2px 2px rgba(255,255,255, 0.30) inset, 0 1px 2px rgba(0,0,0, 0.15);
+    -moz-box-shadow: 0 0 1px rgba(0,0,0, 0.25) inset, 0 2px 2px rgba(255,255,255, 0.30) inset, 0 1px 2px rgba(0,0,0, 0.15);
+    box-shadow: 0 0 1px rgba(0,0,0, 0.25) inset, 0 2px 2px rgba(255,255,255, 0.30) inset, 0 1px 2px rgba(0,0,0, 0.15);
+
+    /* Transitions */
+    -webkit-transition: 0.1s linear -webkit-box-shadow;
+    -moz-transition: 0.1s linear -moz-box-shadow;
+    -ms-transition: 0.1s linear box-shadow;
+    -o-transition: 0.1s linear box-shadow;
+    transition: 0.1s linear box-shadow;
+}
+
+{{prefix}}{{skinName}} a{{prefix}}button {
+    color: {{text}};
+    text-decoration:none;
+}
+
+{{prefix}}{{skinName}} a{{prefix}}button-selected {
+    color: {{selectedText}};
+    text-decoration:none;
+}
+
+{{prefix}}{{skinName}} {{prefix}}button-hover,
+{{prefix}}{{skinName}} {{prefix}}button:hover {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#26000000', GradientType=0);
+    background: {{gradient}};
+    background-color: {{hoverBackground}};
+    color: {{hoverText}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}button-active,
+{{prefix}}{{skinName}} {{prefix}}button:active {
+    border: inset 1px solid #999;  /*IE 6/7/8*/
+    border: none rgba(0, 0, 0, 0);  /*IE9 + everything else*/
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1A000000', endColorstr='#26000000', GradientType=0);
+    background: {{selectedGradient}};
+    background-color: {{selectedBackground}};
+    color: {{selectedText}};
+
+
+    -webkit-box-shadow: 0 0 1px rgba(0,0,0, 0.25) inset, 0 2px 4px rgba(0,0,0, 0.30) inset;
+    -moz-box-shadow: 0 0 1px rgba(0,0,0, 0.25) inset, 0 2px 4px rgba(0,0,0, 0.30) inset;
+    box-shadow: 0 0 1px rgba(0,0,0, 0.25) inset, 0 2px 4px rgba(0,0,0, 0.30) inset;
+}
+
+{{prefix}}{{skinName}} {{prefix}}button[disabled],
+{{prefix}}{{skinName}} {{prefix}}button-disabled,
+{{prefix}}{{skinName}} {{prefix}}button-disabled:hover,
+{{prefix}}{{skinName}} {{prefix}}button-disabled:active {
+    cursor: default;
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    filter: alpha(opacity=55);
+    -khtml-opacity: 0.55;
+    -moz-opacity: 0.55;
+    opacity: 0.55;
+    -webkit-box-shadow: 0 0 1px rgba(0,0,0, 0.25) inset;
+    -moz-box-shadow: 0 0 1px rgba(0,0,0, 0.25) inset;
+    box-shadow: 0 0 1px rgba(0,0,0, 0.25) inset;
+
+    background-color: {{background}};
+    color: {{text}};
+
+
+}
+
+/* Firefox: Get rid of the inner focus border */
+{{prefix}}{{skinName}} {{prefix}}button::-moz-focus-inner{
+    padding: 0;
+    border: 0;
+}
+
+/* Firefox: Add a border around a focused button */
+{{prefix}}{{skinName}} {{prefix}}button:-moz-focusring {
+    outline: thin dotted;
+}
+
+
+{{prefix}}{{skinName}} {{prefix}}button-primary,
+{{prefix}}{{skinName}} {{prefix}}button-selected {
+    background-color: {{selectedBackground}};
+    color: {{selectedText}};
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 2px rgba(255, 255, 255, 0.17) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 2px rgba(255, 255, 255, 0.17) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 2px rgba(255, 255, 255, 0.17) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
+    border-color: {{selectedBorderHigh}} {{selectedBorderLow}} {{selectedBorderLow}} {{selectedBorderHigh}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}button-primary:hover,
+{{prefix}}{{skinName}} {{prefix}}button-selected:hover {
+    background-color: {{selectedHoverBackground}};
+    color: {{selectedHoverText}};
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 2px rgba(255, 255, 255, 0.17) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 2px rgba(255, 255, 255, 0.17) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.25) inset, 0 2px 2px rgba(255, 255, 255, 0.17) inset, 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+
+{{prefix}}{{skinName}} {{prefix}}sam {{prefix}}button:-moz-focusring {
+    outline-color: rgba(0, 0, 0, 0.85);
+}
+
+
+{{prefix}}{{skinName}} {{prefix}}night {{prefix}}button:-moz-focusring {
+    outline-color: rgba(255, 255, 255, 0.85);
+}

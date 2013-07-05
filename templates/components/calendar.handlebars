@@ -1,0 +1,125 @@
+{{prefix}}{{skinName}} {{prefix}}calendar-content {
+    padding: {{containerPadding}};
+    border-radius: {{containerRadius}};
+    {{gradient}};
+    background-color: {{background}};
+    color: {{text}};
+    border: solid 1px;
+    border-color: {{borderHigh}} {{borderLow}} {{borderLow}} {{borderHigh}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendar-grid {
+    padding: 5px;  /* any affect? */
+    border-collapse: collapse;
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendar-header {
+    padding-bottom:10px;
+    color: {{headerText}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendar-header-label {
+    margin: 0;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+
+{{prefix}}{{skinName}} {{prefix}}calendar-day,
+{{prefix}}{{skinName}} {{prefix}}calendar-prevmonth-day,
+{{prefix}}{{skinName}} {{prefix}}calendar-nextmonth-day {
+    padding: {{dayPadding}};
+    text-align: center;
+}
+
+
+
+
+{{prefix}}{{skinName}} {{prefix}}calendar-weekday {
+    font-weight: bold;
+    background: {{weekdayHeadBackground}};
+    color: {{weekdayHeadText}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendar-prevmonth-day,
+{{prefix}}{{skinName}} {{prefix}}calendar-nextmonth-day {
+    background: {{nextPrevMonthDayBackground}};
+    color: {{nextPrevMonthDayText}};
+    border: solid 1px {{dayBorder}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendar-day {
+    font-weight: bold;
+    background: {{dayBackground}};
+    color: {{dayText}};
+    border: solid 1px {{dayBorder}};
+}
+{{prefix}}{{skinName}} {{prefix}}calendar-day:hover,         /* When cursor   is used to navigate days */
+{{prefix}}{{skinName}} {{prefix}}calendar-day-highlighted {  /* When keyboard is used to navigate days */
+    background: {{dayHoverBackground}};
+    color: {{dayHoverText}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendar-day-selected {
+    {{daySelectedGradient}};
+    background-color: {{daySelectedBackground}};
+    color: {{daySelectedText}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendar-day-selected:hover, /* When cursor hovers over selected days */
+{{prefix}}{{skinName}} {{prefix}}calendar-day-selected{{prefix}}calendar-day-highlighted { /* When keyboard focuses over selected days */
+    background-color: {{daySelectedHoverBackground}};
+    color: {{daySelectedHoverText}};
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendar-header-label {
+    text-align: center;
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendar-left-grid {
+   margin-right:1em;
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendar-right-grid {
+   margin-left:1em;
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendar-selection-disabled,
+{{prefix}}{{skinName}} {{prefix}}calendar-selection-disabled:hover {
+  color: {{dayDisabledText}};
+  background: {{dayDisabledBackground}};
+}
+/**************** the following from calendarnavigator.css ******************/
+{{prefix}}{{skinName}} {{prefix}}calendarnav-prevmonth, {{prefix}}{{skinName}} {{prefix}}calendarnav-nextmonth {
+  color: #000000;  /*falls back to text if image not rendered */
+  width: 12px;
+  height: 14px;
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAOCAYAAAA1+Nx+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAKNJREFUeNpiYCAeSAPxUiiWZqAi4ATiaiD+DMT/ofgzVIyTUsMDgfghksHo+CFUDcnAAIgP4DEYHR+A6iEIhIB4GgkGo+NpUDMwADMQFwHxBwoMh+EPULOYYYZ7APFVKhiMjkFmejBBLWFjoD5gQ+dQO4iwOloUiOdQYPgcqBkDl0zRQRQRGS2KGkVFHRB/QzL4G1SMk5qpQg6psJMjVhNAgAEAH+qPqeiPEUsAAAAASUVORK5CYII=);
+  background-repeat: no-repeat;
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendarnav-prevmonth:hover, {{prefix}}{{skinName}} {{prefix}}calendarnav-nextmonth:hover {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAOCAYAAAA1+Nx+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAPpJREFUeNpi/P//PwMxQD9jszSQ6oJyyy7O8H1KjD5GQhYADeYEUkVAXAHEPFDhL0DcAcR9QIu+k20B0PBAIDUBiOVwKHkExAVAS9aTZAHQYAOowfYMxIGDUIsu4LUAaLAQkGoB4kwG8sB0IK4BWvQOxQKgwcxAdj4Q1wExPwNl4CMQNwHxRKBFfxn10jd5ADm9QKzFQF1wDYiLmaAcNgbqA7CZTEBv7ADS2iDboN5joEIQgczSBpmNHsmiQKodiJPJNHwuEFcCDX49MMkUi0VRUB/hy2ggFy+jtKgohRYVnFDh79CiopuiogLNIjmobxigrn5EjD6AAAMAok9vhfHG8wQAAAAASUVORK5CYII=);
+  color: #0066CC;
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendarnav-month-disabled, {{prefix}}{{skinName}} {{prefix}}calendarnav-month-disabled:hover {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAOCAYAAAA1+Nx+AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQhJREFUeNqs0yGLAlEUhuHrKoIgCFbBJghb3F+g0WrVarEqLIhBEEFYWKNNMBktU4z6C5RNkwyCyWQSTPuOfCOCrHNnxwMPyOGe73DAiTmOYywrhy/9/sTBZujN4k0KPbioi6teKuqCmsKGSN/10+q5ehN6QQkrLJB/Mp/Xm5VmAhdkMcEGZWNfZc1MlPGwII42dmiZ/1dLGW1lXhdU8YNvZEz0yijLy6z6FyTN6yvpX7DEOzo4vSD4pCwvc+lfcMEYBUwjhE+VMVbmw7/oiCY+sA4RvNZMUxmB38EWFTSwfxK815uKZkJ/yXMU0cf5rn9Wr6g3f1bC4nwvbIAZRup1Ay671a8AAwC3OzOqxK+rkwAAAABJRU5ErkJggg==);
+  cursor: default;
+  color: #CCCCCC;
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendarnav-prevmonth, {{prefix}}{{skinName}} {{prefix}}calendarnav-prevmonth:hover {
+  background-position: 0px 0px;
+  margin-left:-12px;
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendarnav-nextmonth, {{prefix}}{{skinName}} {{prefix}}calendarnav-nextmonth:hover {
+  background-position: -12px 0px;
+  margin-right: -12px;
+}
+
+{{prefix}}{{skinName}} {{prefix}}calendarnav-prevmonth span, {{prefix}}{{skinName}} {{prefix}}calendarnav-nextmonth span {
+   display: none;
+   *display: block;
+}

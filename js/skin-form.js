@@ -24,5 +24,5 @@ Y.Skin.renderers.form = function (skin) {
 };
 
 }, '0.0.1', {
-    requires: []
+    requires: ['skin']
 });

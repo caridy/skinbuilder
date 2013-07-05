@@ -2,53 +2,7 @@
 // - Break out sample widgets into separate module.
 // - Convert input handling and Picker to OO-style.
 
-YUI({
-    comboBase: 'https://yui-s.yahooapis.com/combo?',
-    combine: true,
-    logInclude: { TestRunner: true },
-    filter: 'raw',
-    modules: {
-        'skin'             : 'js/skin.js',
-        'colorspace'       : 'js/colorspace.js',
-        'colorspace-schemes'       : 'js/colorspace-schemes.js',
-        'skin-autocomplete': 'js/skin-autocomplete.js',
-        'skin-button'      : 'js/skin-button.js',
-        'skin-calendar'    : 'js/skin-calendar.js',
-        'skin-datatable'   : 'js/skin-datatable.js',
-        'skin-dial'        : 'js/skin-dial.js',
-        'skin-node-menunav': 'js/skin-node-menunav.js',
-        'skin-overlay'     : 'js/skin-overlay.js',
-        'skin-panel'       : 'js/skin-panel.js',
-        'skin-scrollview'  : 'js/skin-scrollview.js',
-        'skin-slider'      : 'js/skin-slider.js',
-        'skin-space'       : 'js/skin-space.js',
-        'skin-tabview'     : 'js/skin-tabview.js',
-
-        // begin YUICSS
-        'skin-buttons'     : 'js/skin-buttons.js',
-        'skin-form'        : 'js/skin-form.js',
-        'skin-table'       : 'js/skin-table.js',
-        'skin-list'        : 'js/skin-list.js',
-
-        'skinner': {
-            use: [
-                'skin', 'colorspace-schemes', 'skin-autocomplete', 'skin-button',
-                'skin-calendar', 'skin-datatable', 'skin-dial',
-                'skin-node-menunav', 'skin-overlay', 'skin-panel',
-                'skin-scrollview', 'skin-slider', 'skin-tabview',
-                'skin-buttons', 'skin-form', 'skin-table', 'skin-list'
-            ]
-        }
-    }
-}).use(
-    'skinner', 'handlebars',
-    'slider', 'overlay', 'panel', 'node-menunav', 'dial', 'autocomplete',
-    'autocomplete-filters', 'autocomplete-highlighters', 'scrollview',
-    'datatable-sort', 'dd-drag', 'dd-constrain', 'calendar', 'button-plugin',
-    'tabview', 'datatype-date', 'button-group', 'cssbutton',
-    'node-event-delegate', 'overlay', 'color', 'test', 'test-console', 'event-outside',
-    'querystring', 'datatype-number',
-function (Y) {
+YUI.add('skinner', function (Y) {
 
     var PAGE_BG_COLOR = '#ffffff',
         KEY_COLOR = {
@@ -299,7 +253,7 @@ function (Y) {
         var cssOutput = document.getElementById('textarea-style'), // place from where user copies CSS code
             css = '', // any css code placed in this var goes only to the textarea the user copies CSS code
             cssRequired = '', // any code placed in this var and 'css' var goes to the <style> block that this app uses for UI
-            i;
+            i, sData;
 
         Y.Object.each(TEMPLATES, function(template, name) {
             if(name === 'space'){
@@ -318,6 +272,24 @@ function (Y) {
             }
 
         });
+
+        // adding value stamps at the top of the code
+        sData = {
+            opt:[
+                SKIN.options.name,
+                SKIN.options.keycolor.substring(1),
+                SKIN.options.container.substring(1),
+                SKIN.options.paddingHoriz,
+                SKIN.options.paddingVert,
+                SKIN.options.radius,
+                SKIN._space.options.textContrast
+            ].toString(),
+            h:[SCHEME_CUSTOM.high.h, SCHEME_CUSTOM.high.s, SCHEME_CUSTOM.high.l].toString(),
+            n:[SCHEME_CUSTOM.normal.h, SCHEME_CUSTOM.normal.s, SCHEME_CUSTOM.normal.l].toString(),
+            l:[SCHEME_CUSTOM.low.h, SCHEME_CUSTOM.low.s, SCHEME_CUSTOM.low.l].toString(),
+            b:[SCHEME_CUSTOM.background.h, SCHEME_CUSTOM.background.s, SCHEME_CUSTOM.background.l].toString()
+        };
+        css = '/* #skinbuilder:state:begin# ' + Y.JSON.stringify(sData) + ' #skinbuilder:state:end# */\n\r' + css;
 
         cssOutput.value = css;
 //        STYLESHEET.innerHTML = cssRequired + css;
@@ -351,7 +323,7 @@ function (Y) {
 
     // Populate TEMPLATES from HTML document.
     Y.Object.each(Y.Skin.renderers, function(fn, name) {
-        TEMPLATES[name] = document.getElementById(name + '-template').innerHTML;
+        TEMPLATES[name] = Y.Template._cache["skinbuilder/" + name];
     });
 
     updateColors();
@@ -1894,4 +1866,38 @@ function (Y) {
 ////////////////  end query string stuff //////////////
 
 
+}, '', {
+    affinity: 'client',
+    requires: [
+        // template
+        'skinbuilder-templates-autocomplete',
+        'skinbuilder-templates-button',
+        'skinbuilder-templates-buttons',
+        'skinbuilder-templates-calendar',
+        'skinbuilder-templates-datatable',
+        'skinbuilder-templates-dial',
+        'skinbuilder-templates-form',
+        'skinbuilder-templates-list',
+        'skinbuilder-templates-nodeMenunav',
+        'skinbuilder-templates-overlay',
+        'skinbuilder-templates-panel',
+        'skinbuilder-templates-scrollview',
+        'skinbuilder-templates-slider',
+        'skinbuilder-templates-space',
+        'skinbuilder-templates-table',
+        'skinbuilder-templates-tabview',
+        // skins
+        'skin', 'colorspace-schemes', 'skin-autocomplete', 'skin-button',
+        'skin-calendar', 'skin-datatable', 'skin-dial',
+        'skin-node-menunav', 'skin-overlay', 'skin-panel',
+        'skin-scrollview', 'skin-slider', 'skin-tabview',
+        'skin-buttons', 'skin-form', 'skin-table', 'skin-list',
+        // components
+        'slider', 'overlay', 'panel', 'node-menunav', 'dial', 'autocomplete',
+        'autocomplete-filters', 'autocomplete-highlighters', 'scrollview',
+        'datatable-sort', 'dd-drag', 'dd-constrain', 'calendar', 'button-plugin',
+        'tabview', 'datatype-date', 'button-group', 'cssbutton',
+        'node-event-delegate', 'overlay', 'color', 'test', 'test-console', 'event-outside',
+        'querystring', 'datatype-number', 'json-stringify'
+    ]
 });

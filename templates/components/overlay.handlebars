@@ -1,0 +1,26 @@
+/** from overlay-core.css ***************************/
+{{prefix}}overlay {
+    position:absolute;
+}
+
+{{prefix}}overlay-hidden {
+    visibility:hidden
+}
+
+{{prefix}}widget-tmp-forcesize {{prefix}}overlay-content {
+    overflow:hidden !important;
+}
+
+/** added ***************************************/
+{{prefix}}{{skinName}} {{prefix}}overlay-content {{prefix}}widget-hd,
+{{prefix}}{{skinName}} {{prefix}}overlay-content {{prefix}}widget-bd,
+{{prefix}}{{skinName}} {{prefix}}overlay-content {{prefix}}widget-ft {
+    background-color: {{background}};
+    border: solid 1px {{border}};
+    border-bottom: none;
+    padding: {{hdBdFtPadding}};
+    color: {{text}};
+}
+{{prefix}}{{skinName}} {{prefix}}overlay-content {{prefix}}widget-ft {
+    border-bottom: solid 1px {{border}};
+}

@@ -1,0 +1,12 @@
+{
+    "name": "skinbuilder",
+    "description": "Skin Builder for Purecss.",
+    "version": "0.0.1",
+    "private": true,
+    "main": "app.js",
+    "dependencies": {
+        "locator-handlebars": "*",
+        "locator": "*",
+        "express-yui": "*"
+    }
+}

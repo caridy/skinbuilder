@@ -337,167 +337,187 @@ YUI.add('skinner', function (Y) {
      */
 
     // Create a new instance of Calendar,    ////////////////////////////////////////////
-    //setting its width
-    // and height, allowing the dates from the previous
-    // and next month to be visible and setting the initial
-    // date to be November, 1982.
-    calendar = new Y.Calendar({
-          contentBox: "#mycalendar",
-//          height:'200px',
-//          width:'600px',
-          showPrevMonth: true,
-          showNextMonth: true,
-          date: new Date(1982,11,1)
-        });
-    calendar.render(),
+    if (Y.one("#mycalendar")) {
+        //setting its width
+        // and height, allowing the dates from the previous
+        // and next month to be visible and setting the initial
+        // date to be November, 1982.
+        calendar = new Y.Calendar({
+              contentBox: "#mycalendar",
+    //          height:'200px',
+    //          width:'600px',
+              showPrevMonth: true,
+              showNextMonth: true,
+              date: new Date(1982,11,1)
+            });
+        calendar.render();
 
-    // make a day selected for display
-    days = Y.all('.yui3-calendar-day');
+        // make a day selected for display
+        days = Y.all('.yui3-calendar-day');
 
-    days.item(12).addClass('yui3-calendar-day-selected');
-    days.item(13).addClass('yui3-calendar-selection-disabled');
+        days.item(12).addClass('yui3-calendar-day-selected');
+        days.item(13).addClass('yui3-calendar-selection-disabled');
+    }
 
     // Instance of tabview  /////////////////////////////////////////////////////////////
-    tabview = new Y.TabView({
-        srcNode: '#tabview',
-        width: '250px'
-    });
+    if (Y.one("#tabview")) {
+        tabview = new Y.TabView({
+            srcNode: '#tabview',
+            width: '250px'
+        });
 
-    tabview.render();
+        tabview.render();
+    }
 
     // Disabled button //////////////////////////////////////////////
-    // A disabled button
-    disabledButton = Y.one('#myDisabledButton');
-    disabledButton.plug(Y.Plugin.Button, {
-        disabled: true
-    });
+    if (Y.one("#myDisabledButton")) {
+        // A disabled button
+        disabledButton = Y.one('#myDisabledButton');
+        disabledButton.plug(Y.Plugin.Button, {
+            disabled: true
+        });
+    }
 
 
     // Datatable instance ///////////////////////////////////////////////////////
-    cols = [
-        {key:"Company", label:"Sortable", sortable:true},
-        {key:"Phone", label:"No Sort"},
-        {key:"Contact", label:"Sortable", sortable:true}
-    ];
+    if (Y.one("#datatable")) {
+        cols = [
+            {key:"Company", label:"Sortable", sortable:true},
+            {key:"Phone", label:"No Sort"},
+            {key:"Contact", label:"Sortable", sortable:true}
+        ];
 
-    data = [
-        {Company:"Cabs", Phone:"455-1234", Contact:"Smith, S."},
-        {Company:"Acme", Phone:"650-4444", Contact:"Jones, J."},
-        {Company:"Washers", Phone:"405-5678", Contact:"Ward, R."}
-    ];
+        data = [
+            {Company:"Cabs", Phone:"455-1234", Contact:"Smith, S."},
+            {Company:"Acme", Phone:"650-4444", Contact:"Jones, J."},
+            {Company:"Washers", Phone:"405-5678", Contact:"Ward, R."}
+        ];
 
-    table = new Y.DataTable({
-        columns: cols,
-        data   : data,
-        summary: "Contacts list",
-        caption: "Table with simple column sorting"
-    });
-    table.render("#datatable");
+        table = new Y.DataTable({
+            columns: cols,
+            data   : data,
+            summary: "Contacts list",
+            caption: "Table with simple column sorting"
+        });
+        table.render("#datatable");
+    }
 
     // Scrollview instance Horizontal ///////////////////////////////////////////////////
-    // var scrollViewX = new Y.ScrollView({
-    //     id: "scrollview",
-    //     srcNode: '#scrollview-content-horiz',
-    //     //height: 100, // specifying the height is only allowed on a vertical scrollView
-    //     width: 300,
-    //     flick: {
-    //         minDistance:2,
-    //         minVelocity:0.1,
-    //         axis: "x"
-    //     }
-    // });
-    // scrollViewX.render();
+    if (Y.one("#scrollview-content")) {
+        // var scrollViewX = new Y.ScrollView({
+        //     id: "scrollview",
+        //     srcNode: '#scrollview-content-horiz',
+        //     //height: 100, // specifying the height is only allowed on a vertical scrollView
+        //     width: 300,
+        //     flick: {
+        //         minDistance:2,
+        //         minVelocity:0.1,
+        //         axis: "x"
+        //     }
+        // });
+        // scrollViewX.render();
 
-    // Scrollview instance Vertical ///////////////////////////////////////////////////
-    scrollView = new Y.ScrollView({
-        id: "scrollview",
-        srcNode: '#scrollview-content',
-        height: 128,
-        //width: 300,  specifying the width is only allowed on a horizontal scrollView
-        flick: {
-            minDistance:5,
-            minVelocity:0.3,
-            axis: "y"
-        }
-    });
-    scrollView.render();
-
+        // Scrollview instance Vertical ///////////////////////////////////////////////////
+        scrollView = new Y.ScrollView({
+            id: "scrollview",
+            srcNode: '#scrollview-content',
+            height: 128,
+            //width: 300,  specifying the width is only allowed on a horizontal scrollView
+            flick: {
+                minDistance:5,
+                minVelocity:0.3,
+                axis: "y"
+            }
+        });
+        scrollView.render();
+    }
 
     // Autocomplete instance ////////////////////////////////////////////////////
-    states=['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware',
-        'Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky',
-        'Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi',
-        'Missouri','Montana','Nebraska','Nevada','NewHampshire','NewJersey','NewMexico','NewYork',
-        'NorthDakota','NorthCarolina','Ohio','Oklahoma','Oregon','Pennsylvania','RhodeIsland',
-        'SouthCarolina','SouthDakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington',
-        'WestVirginia','Wisconsin','Wyoming'];
+    if (Y.one("#ac-input")) {
+        states=['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware',
+            'Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky',
+            'Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi',
+            'Missouri','Montana','Nebraska','Nevada','NewHampshire','NewJersey','NewMexico','NewYork',
+            'NorthDakota','NorthCarolina','Ohio','Oklahoma','Oregon','Pennsylvania','RhodeIsland',
+            'SouthCarolina','SouthDakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington',
+            'WestVirginia','Wisconsin','Wyoming'];
 
-    Y.one('#ac-input').plug(Y.Plugin.AutoComplete, {
-        resultFilters    : 'phraseMatch',
-        resultHighlighter: 'phraseMatch',
-        source           : states
-    });
+        Y.one('#ac-input').plug(Y.Plugin.AutoComplete, {
+            resultFilters    : 'phraseMatch',
+            resultHighlighter: 'phraseMatch',
+            source           : states
+        });
+    }
 
     // Dial instance ////////////////////////////////////////////////////////////
-    dial = new Y.Dial({
-        min:-220,
-        max:220,
-        stepsPerRevolution:100,
-        value: 30
-    });
-    dial.render('#dial');
+    if (Y.one("#dial")) {
+        dial = new Y.Dial({
+            min:-220,
+            max:220,
+            stepsPerRevolution:100,
+            value: 30
+        });
+        dial.render('#dial');
+    }
 
     // Node Menunav instance /////////////////////////////////////////////////
-    menu = Y.one("#node-menunav");
-    menu.plug(Y.Plugin.NodeMenuNav);
+    if (Y.one("#node-menunav")) {
+        menu = Y.one("#node-menunav");
+        menu.plug(Y.Plugin.NodeMenuNav);
 
-    menuSplit = Y.one("#node-menunav-split");
-    //menuSplit.plug(Y.Plugin.NodeMenuNav);
-    menuSplit.plug(Y.Plugin.NodeMenuNav, { autoSubmenuDisplay: false, mouseOutHideDelay: 0 });
+        menuSplit = Y.one("#node-menunav-split");
+        //menuSplit.plug(Y.Plugin.NodeMenuNav);
+        menuSplit.plug(Y.Plugin.NodeMenuNav, { autoSubmenuDisplay: false, mouseOutHideDelay: 0 });
+    }
 
     // Overlay instance /////////////////////////////////////////////////////
-    overlay = new Y.Overlay({
-        // Specify a reference to a node which already exists
-        // on the page and contains header/body/footer content
-        srcNode:"#overlayContent",
+    if (Y.one("#overlayContent")) {
+        overlay = new Y.Overlay({
+            // Specify a reference to a node which already exists
+            // on the page and contains header/body/footer content
+            srcNode:"#overlayContent",
 
-        // Also set some of the attributes inherited from
-        // the base Widget class.
-        visible:true,
-        headerContent:"My Overlay Header",
-        bodyContent:"My Overlay Body",
-        footerContent:"My Footer Content",
-        //xy:[300, 300],
-        width: 200
-    });
-    overlay.render();
-    anchorOverlay = Y.one('#anchorOverlay');
+            // Also set some of the attributes inherited from
+            // the base Widget class.
+            visible:true,
+            headerContent:"My Overlay Header",
+            bodyContent:"My Overlay Body",
+            footerContent:"My Footer Content",
+            //xy:[300, 300],
+            width: 200
+        });
+        overlay.render();
+anchorOverlay = Y.one('#anchorOverlay');
+    }
 
     // Panel instance ////////////////////////////////////////////////////////
-    panel = new Y.Panel({
-        srcNode      : '#panelContent',
-        headerContent: 'Add A New Product',
-        width        : 250,
-        zIndex       : 5,
-        centered     : false,
-        modal        : false,
-        visible      : true,
-        render       : true,
-        plugins      : [Y.Plugin.Drag]
-    });
-    panel.addButton({
-        value  : 'Add Item',
-        section: Y.WidgetStdMod.FOOTER,
-        action : function (e) {
-            e.preventDefault();
-            //addItem();
-        }
-    });
-    // var overlayNode = Y.one('#overlayContent');
-    anchorPanel = Y.one('#anchorPanel');
+    if (Y.one("#panelContent")) {
+        panel = new Y.Panel({
+            srcNode      : '#panelContent',
+            headerContent: 'Add A New Product',
+            width        : 250,
+            zIndex       : 5,
+            centered     : false,
+            modal        : false,
+            visible      : true,
+            render       : true,
+            plugins      : [Y.Plugin.Drag]
+        });
+        panel.addButton({
+            value  : 'Add Item',
+            section: Y.WidgetStdMod.FOOTER,
+            action : function (e) {
+                e.preventDefault();
+                //addItem();
+            }
+        });
+        // var overlayNode = Y.one('#overlayContent');
+anchorPanel = Y.one('#anchorPanel');
+    }
 
     // Slider instance ///////////////////////////////////////////////////////////
-    report = Y.one('#slider-report'),
+    if (Y.one("#slider-report")) {
+        report = Y.one('#slider-report');
         slider = new Y.Slider({
             thumbUrl: 'assets/images/blank_thumb.png',
             length: '280px',
@@ -510,7 +530,8 @@ YUI.add('skinner', function (Y) {
                 }
             }
         });
-    slider.render('#slider');
+        slider.render('#slider');
+    }
 
     // End of adding instances of widgets to be colored by this tool
     /////////////////////////////////////////////////////////////////

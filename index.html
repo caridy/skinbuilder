@@ -13,26 +13,29 @@
 <link rel="stylesheet" href="/assets/styles.css">
 </head>
 
-<body class="yui3-skin-mine pure-skin-mine yui3-loading">   <!--yui3-skin-sam-->
+<body class="yui3-skin-mine pure-skin-mine yui3-loading">
+
 <div class="splash hero">
     <h1>YUI Skin Builder</h1>
     <h2>An App for Generating Custom Skin CSS</h2>
     <div id="spinner"></div>
 </div>
-<div class="mega"> <!-- Mega container div to hide contents of page until done loading -->  
 
-<div id="log" class="yui3-skin-sam"></div><!-- console log for functional testing feedback -->
+<!-- Mega container div to hide contents of page until done loading -->
+<div class="mega">
 
-<div id="headerMenu">
-    <ul>
-        <li><a class="heading-main-ui">YUI Skin Builder</a></li>
-        <li><a class="tag-line">An App for Generating Custom Skin CSS</a></li>
-        <li><a href="docs.html">Documentation</a></li>
-        <li><a href="https://github.com/yui/skinbuilder/issues">File an issue</a></li>
-    </ul>
-</div>
+    <div id="log" class="yui3-skin-sam"></div><!-- console log for functional testing feedback -->
 
-<div id="tabview-controls-container">
+    <div id="headerMenu">
+        <ul>
+            <li><a class="heading-main-ui">YUI Skin Builder</a></li>
+            <li><a class="tag-line">An App for Generating Custom Skin CSS</a></li>
+            <li><a href="docs.html">Documentation</a></li>
+            <li><a href="https://github.com/yui/skinbuilder/issues">File an issue</a></li>
+        </ul>
+    </div>
+
+    <div id="tabview-controls-container">
     <div id="tabview-controls">
         <ul>
             <li><a class="tab-color" href="#tab-palette">Style</a></li>
@@ -371,8 +374,11 @@
 
 </div><!-- end tabview-controls-container for fixed position -->
 
-<!-- this UL is the container for all previewed widgets -->
-<ul id="widget-container">
+
+    <!-- this UL is the container for all previewed widgets -->
+    <ul id="widget-container">
+        <!-- YUI Widgets Markup -->
+
     <li class="sb-preview-button"><div class="widget-preview-label widget-preview-label-button">Button</div>
         <button class="checkbox yui3-button yui3-button-selected" id="yui_3_6_0_1_1343853873543_37">Button 3</button>
         <button class="checkbox yui3-button" id="yui_3_6_0_1_1343853873543_37">Button 3</button>
@@ -539,21 +545,11 @@
             <div class="yui3-widget-ft">Overlay Footer</div>
         </div>
     </li>
-<!-- End of YUI Widgets Markup //////////////////////////////////////////////////////////-->
-<!-- ////////////////////////////////////////////////////////////////////////////////////-->
-<!-- ////////////////////////////////////////////////////////////////////////////////////-->
-<!-- ////////////////////////////////////////////////////////////////////////////////////-->
-<!-- ////////////////////////////////////////////////////////////////////////////////////-->
-<!-- ////////////////////////////////////////////////////////////////////////////////////-->
-<!-- ////////////////////////////////////////////////////////////////////////////////////-->
-<!-- ////////////////////////////////////////////////////////////////////////////////////-->
-<!-- ////////////////////////////////////////////////////////////////////////////////////-->
-<!-- ////////////////////////////////////////////////////////////////////////////////////-->
-<!-- ////////////////////////////////////////////////////////////////////////////////////-->
-<!-- ////////////////////////////////////////////////////////////////////////////////////-->
-<!-- ////////////////////////////////////////////////////////////////////////////////////-->
 
-<!-- YUICSS Markup -->
+<!-- End of YUI Widgets Markup /-->
+
+        <!-- Pure Markup -->
+
     <li class="sb-preview-form"><div class="widget-preview-label">Forms - Checkboxes and Radios</div>
         <form class="pure-form">
         <label class="pure-checkbox">
@@ -845,15 +841,17 @@
         <li><a class="pure-button next">&#187;</a></li>
         </ul>
     </li>
-<!-- End of YUICSS Markup //////////////////////////////////////////////////////////-->
-<!-- ////////////////////////////////////////////////////////////////////////////////////-->
 
-</ul> <!--   end of container for widget previews    -->
+<!-- End of Pure Markup /-->
 
+    </ul>
+    <!-- end of container for widget previews -->
 
-</div> <!-- Close Mega container div to hide contents of page until done loading -->  
+</div>
+<!-- Close Mega container div to hide contents of page until done loading -->
 
 <script>
+
 (function (g) {
 // -- Namespaces --
 g.app || (g.app = {});
@@ -864,13 +862,11 @@ g.YUI_config = {"version":"3.10.3","base":"/yui-3.10.3/","comboBase":"/combo~","
 g.app.yui = {"use":function bootstrap() { var self = this, d = document, head = d.getElementsByTagName('head')[0], ie = /MSIE/.test(navigator.userAgent), pending = 0, callback = [], args = arguments, config = typeof YUI_config != "undefined" ? YUI_config : {}; function flush() { var l = callback.length, i; if (!self.YUI && typeof YUI == "undefined") { throw new Error("YUI was not injected correctly!"); } self.YUI = self.YUI || YUI; for (i = 0; i < l; i++) { callback.shift()(); } } function decrementRequestPending() { pending--; if (pending <= 0) { setTimeout(flush, 0); } else { load(); } } function createScriptNode(src) { var node = d.createElement('script'); if (node.async) { node.async = false; } if (ie) { node.onreadystatechange = function () { if (/loaded|complete/.test(this.readyState)) { this.onreadystatechange = null; } decrementRequestPending(); }; } else { node.onload = node.onerror = decrementRequestPending; } node.setAttribute('src', src); return node; } function load() { if (!config.seed) { throw new Error('YUI_config.seed array is required.'); } var seed = config.seed, l = seed.length, i, node; pending = seed.length; self._injected = true; for (i = 0; i < l; i++) { node = createScriptNode(seed.shift()); head.appendChild(node); if (node.async !== false) { break; } } } callback.push(function () { if (!self._Y) { self.YUI.Env.core.push.apply(self.YUI.Env.core, config.extendedCore || []); self._Y = self.YUI(); self.use = self._Y.use; } self._Y.use.apply(self._Y, args); }); self.YUI = self.YUI || (typeof YUI != "undefined" ? YUI : null); if (!self.YUI && !self._injected) { load(); } else if (pending <= 0) { flush(); } return this; },"ready":function (callback) { this.use(callback); }};
 g.YUI_config.seed = ["/yui-3.10.3/yui/yui-debug.js","/skinbuilder-0.0.1/loader-skinbuilder/loader-skinbuilder-debug.js"];
 }(this));
-</script>
-<script>
+
 app.yui.use('skinner', function (Y) {
     // any specific initialization needed?
 });
 </script>
-
 
 </body>
 </html>

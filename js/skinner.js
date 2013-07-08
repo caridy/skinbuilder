@@ -199,7 +199,6 @@ YUI.add('skinner', function (Y) {
             'settings': 'This URL will capture all your current skin settings. You can save it somewhere and/or share it.'
         },
         updateBodySkinClass,
-        moveAbsolutePosPreviews,
         initPreviewAndModulesCheckboxes,
         handleCreateQueryString,
         handleModuleModeSwitching,
@@ -249,11 +248,17 @@ YUI.add('skinner', function (Y) {
         schemeChoices.item(i).one('.swatches li:nth-child(4)').setStyle('backgroundColor', SKIN.colorspace.block.low.background);
     }
 
+    function updateAnchors() {
+        // broadcasting an event so each widget can adjust itself if needed
+        Y.fire('updateAnchors');
+    }
+
     function updateCSS() {
         var cssOutput = document.getElementById('textarea-style'), // place from where user copies CSS code
             css = '', // any css code placed in this var goes only to the textarea the user copies CSS code
             cssRequired = '', // any code placed in this var and 'css' var goes to the <style> block that this app uses for UI
-            i, sData;
+            sData = getStyleData(),
+            i;
 
         Y.Object.each(TEMPLATES, function(template, name) {
             if(name === 'space'){
@@ -274,21 +279,6 @@ YUI.add('skinner', function (Y) {
         });
 
         // adding value stamps at the top of the code
-        sData = {
-            opt:[
-                SKIN.options.name,
-                SKIN.options.keycolor.substring(1),
-                SKIN.options.container.substring(1),
-                SKIN.options.paddingHoriz,
-                SKIN.options.paddingVert,
-                SKIN.options.radius,
-                SKIN._space.options.textContrast
-            ].toString(),
-            h:[SCHEME_CUSTOM.high.h, SCHEME_CUSTOM.high.s, SCHEME_CUSTOM.high.l].toString(),
-            n:[SCHEME_CUSTOM.normal.h, SCHEME_CUSTOM.normal.s, SCHEME_CUSTOM.normal.l].toString(),
-            l:[SCHEME_CUSTOM.low.h, SCHEME_CUSTOM.low.s, SCHEME_CUSTOM.low.l].toString(),
-            b:[SCHEME_CUSTOM.background.h, SCHEME_CUSTOM.background.s, SCHEME_CUSTOM.background.l].toString()
-        };
         css = '/* #skinbuilder:state:begin# ' + Y.JSON.stringify(sData) + ' #skinbuilder:state:end# */\n\r' + css;
 
         cssOutput.value = css;
@@ -301,8 +291,9 @@ YUI.add('skinner', function (Y) {
         STYLESHEET = Y.Node.create('<style>' + cssRequired + css + '</style>');
         Y.one('body').appendChild(STYLESHEET);
 
-
-
+        Y.fire('updateStyle', {
+            blob: cssRequired + css
+        });
 
     }
 
@@ -326,7 +317,7 @@ YUI.add('skinner', function (Y) {
         TEMPLATES[name] = Y.Template._cache["skinbuilder/" + name];
     });
 
-    updateColors();
+updateColors();
 
     // END  color schemes and foreground color gen ////////////////////////////////////////////////
 
@@ -487,7 +478,10 @@ YUI.add('skinner', function (Y) {
             width: 200
         });
         overlay.render();
-anchorOverlay = Y.one('#anchorOverlay');
+        anchorOverlay = Y.one('#anchorOverlay');
+        Y.on('updateAnchors', function () {
+            overlay.move([anchorOverlay.getX(),  anchorOverlay.getY()]);
+        });
     }
 
     // Panel instance ////////////////////////////////////////////////////////
@@ -512,7 +506,10 @@ anchorOverlay = Y.one('#anchorOverlay');
             }
         });
         // var overlayNode = Y.one('#overlayContent');
-anchorPanel = Y.one('#anchorPanel');
+        anchorPanel = Y.one('#anchorPanel');
+        Y.on('updateAnchors', function () {
+            panel.move([anchorPanel.getX(),  anchorPanel.getY()]);
+        });
     }
 
     // Slider instance ///////////////////////////////////////////////////////////
@@ -619,8 +616,7 @@ anchorPanel = Y.one('#anchorPanel');
                 var newVal = e.target.get('value');
                 SKIN.options.paddingHoriz = newVal / 50;
                 setTimeout(updateColors, 10);
-                overlay.move([anchorOverlay.getX(),  anchorOverlay.getY()]);
-                panel.move([anchorPanel.getX(),  anchorPanel.getY()]);
+                updateAnchors();
                 Y.one('.slider-markup-horiz-padding label').setHTML('Horiz. padding: ' + (newVal * 2) + '%');
 
             }
@@ -653,8 +649,7 @@ anchorPanel = Y.one('#anchorPanel');
                 var newVal = e.target.get('value');
                 SKIN.options.paddingVert = (newVal / 50);
                 setTimeout(updateColors, 10);
-                overlay.move([anchorOverlay.getX(),  anchorOverlay.getY()]);
-                panel.move([anchorPanel.getX(),  anchorPanel.getY()]);
+                updateAnchors();
                 Y.one('.slider-markup-vert-padding label').setHTML('Vert. padding: ' + (newVal * 2) + '%');
             }
         }
@@ -1200,15 +1195,9 @@ anchorPanel = Y.one('#anchorPanel');
         e.target.removeClass('show-hover');
     });
 
-    moveAbsolutePosPreviews = function(){
-        overlay.move([anchorOverlay.getX(),  anchorOverlay.getY()] );
-        panel.move([anchorPanel.getX(),  anchorPanel.getY()] );
-    };
-    setTimeout(moveAbsolutePosPreviews, 10);
+    setTimeout(updateAnchors, 10);
 
-    Y.on("windowresize", function(){
-        moveAbsolutePosPreviews();
-    });
+    Y.on("windowresize", updateAnchors);
 
     Y.one('.tab-schemes').on('click', function(){
         overlayPicker.hide();
@@ -1236,9 +1225,7 @@ anchorPanel = Y.one('#anchorPanel');
         Y.all('.sb-preview-' + modStr).setStyle('display', displayMe);
 
         // changes to what's previewed likely affects the postion of overlay and panel
-        overlay.move([anchorOverlay.getX(),  anchorOverlay.getY()]);
-        panel.move([anchorPanel.getX(),  anchorPanel.getY()]);
-
+        updateAnchors();
         updateCSS();
 
     }, 'input');
@@ -1284,25 +1271,29 @@ anchorPanel = Y.one('#anchorPanel');
             appendChksTo,
             displayName,
             i,
-            chk;
+            chk,
+            node;
 
         for(i = 0; i < TEMPLATES_USED.length; i+=1) {
             chk = (TEMPLATES_USED[i].display) ? 'checked' : '';
 
-            displayName = Y.one('#widget-container .sb-preview-' + TEMPLATES_USED[i].name + ' .widget-preview-label').getContent();
-            // if the name coming from the first instance of the module's markup contains a '-' such as 'Forms - Radios and Checkboxes'
-            if (displayName.indexOf('-') > -1) {
-                displayName = displayName.substring(0, displayName.indexOf('-'));
-            }
-            if(TEMPLATES_USED[i].type === "widget") {
-                appendChksTo = widgetUl;
-            } else if (TEMPLATES_USED[i].type === "yuicss") {
-                appendChksTo = yuiCSSUl;
-            }
+            node = Y.one('#widget-container .sb-preview-' + TEMPLATES_USED[i].name + ' .widget-preview-label');
+            if (node) {
+                displayName = node.getContent();
+                // if the name coming from the first instance of the module's markup contains a '-' such as 'Forms - Radios and Checkboxes'
+                if (displayName.indexOf('-') > -1) {
+                    displayName = displayName.substring(0, displayName.indexOf('-'));
+                }
+                if(TEMPLATES_USED[i].type === "widget") {
+                    appendChksTo = widgetUl;
+                } else if (TEMPLATES_USED[i].type === "yuicss") {
+                    appendChksTo = yuiCSSUl;
+                }
 
-            appendChksTo.append('<li><input id="mod-' + TEMPLATES_USED[i].name +
-                '" type="checkbox" ' + chk + ' /> <label for ="mod-' +
-                TEMPLATES_USED[i].name + '">' + displayName + '</label></li>');
+                appendChksTo.append('<li><input id="mod-' + TEMPLATES_USED[i].name +
+                    '" type="checkbox" ' + chk + ' /> <label for ="mod-' +
+                    TEMPLATES_USED[i].name + '">' + displayName + '</label></li>');
+            }
         }
         // they have to inline-block in CSS initially or Dial won't render properly.
         // turn them all 'display' 'none' first
@@ -1317,7 +1308,7 @@ anchorPanel = Y.one('#anchorPanel');
             }
         }
     };
-    
+
     Y.one('#widget-container').all('form').on('submit', function (e) { e.preventDefault(); });
 
 
@@ -1678,18 +1669,35 @@ anchorPanel = Y.one('#anchorPanel');
         } // end of if the query string has "?test"
     };
 
-    runUnitTests();
-
     Y.one('.yui3-loading').removeClass('yui3-loading'); // let body be visible
 
-////////////////// query string skin def ////////////////////////
+    ////////////////// query string skin def ////////////////////////
 
-        ////////// read a query string and set all things ///////////
-        // using Y.QueryString
+    ////////// read a query string and set all things ///////////
+    // using Y.QueryString
     setSkinFromQuery = function () {
+        var config = {};
+
+        if (document.URL.indexOf('mode=pure') > -1 ) {
+            config.mode = 'pure';
+        }
+
+        if (document.URL.indexOf('?opt=') > -1 ) {
+            var theURL = document.URL,
+                theQuery = theURL.substring(theURL.indexOf('.html?') + 6),
+                qData;
+
+            config.opt = Y.QueryString.parse(theQuery);
+        }
+
+        setSkin(config);
+    };
+
+    ////////// set all things ///////////
+    setSkin = function (config) {
         var i,
             tUsed = TEMPLATES_USED;
-        if (document.URL.indexOf('mode=pure') > -1 ) {
+        if (config.mode && config.mode === 'pure') {
             isYuiCss = true;
             // change prefix for classnames in CSS templates
             // SKIN.options.yuiCssPrefix = '.pure-';
@@ -1711,17 +1719,15 @@ anchorPanel = Y.one('#anchorPanel');
             updateColors();
         }
 
-        if (document.URL.indexOf('?opt=') > -1 ) {
-            var theURL = document.URL,
-                theQuery = theURL.substring(theURL.indexOf('.html?') + 6),
-                qData,
+        if (config.opt) {
+            var qData,
                 dataIsValid = true,
                 validationMsg,
                 myProp,
                 myValid,
                 i;
 
-            qData = Y.QueryString.parse(theQuery);
+            qData = config;
 
             for (myProp in qData) {
 
@@ -1828,16 +1834,10 @@ anchorPanel = Y.one('#anchorPanel');
             }
         }
     };
-    setSkinFromQuery();
-    initPreviewAndModulesCheckboxes();
 
-    handleCreateQueryString = function() {
-        // create URL with querystring for skin definition
-        var strUnesc,
-            theBaseURL,
-            moduleModeStr = "",
-            linkInput = Y.one('#inp-url-link'),
-            sData = {
+    function getStyleData () {
+        // create data structure for skin definition
+        var sData = {
                 opt:[
                     SKIN.options.name,
                     SKIN.options.keycolor.substring(1),
@@ -1852,21 +1852,30 @@ anchorPanel = Y.one('#anchorPanel');
                 l:[SCHEME_CUSTOM.low.h, SCHEME_CUSTOM.low.s, SCHEME_CUSTOM.low.l].toString(),
                 b:[SCHEME_CUSTOM.background.h, SCHEME_CUSTOM.background.s, SCHEME_CUSTOM.background.l].toString()
             };
+        if (isYuiCss) {
+            sData.mode = "pure";
+        }
+        return sData;
+    }
+
+    handleCreateQueryString = function() {
+        // create URL with querystring for skin definition
+        var strUnesc,
+            theBaseURL,
+            moduleModeStr = "",
+            linkInput = Y.one('#inp-url-link'),
+            sData = getStyleData();
+
         if (document.URL.indexOf('.html') === -1){
             theBaseURL = document.URL + 'index.html';
         } else {
             theBaseURL = document.URL.substring(0, (document.URL.indexOf('.html') + 5));
         }
         strUnesc = Y.QueryString.unescape(Y.QueryString.stringify(sData));
-        if (isYuiCss) {
-            moduleModeStr = "&mode=pure";
-        }
         linkInput.setStyle('display', 'block');
         linkInput.set('value', theBaseURL + '?' + strUnesc + moduleModeStr);
         linkInput.focus();
         linkInput.select();
-
-
     };
 
     handleModuleModeSwitching = function() {
@@ -1884,8 +1893,19 @@ anchorPanel = Y.one('#anchorPanel');
 
     // listener for "link" button on the Code tab /////////////
     Y.one('#btn-get-url').on('click', handleCreateQueryString);
-////////////////  end query string stuff //////////////
+    ////////////////  end query string stuff //////////////
 
+    Y.Skinner = {
+        runUnitTests: runUnitTests,
+        initFromQuery: function () {
+            setSkinFromQuery();
+            initPreviewAndModulesCheckboxes();
+        },
+        init: function (config) {
+            setSkin(config);
+            initPreviewAndModulesCheckboxes();
+        }
+    };
 
 }, '', {
     affinity: 'client',

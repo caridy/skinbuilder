@@ -45,7 +45,8 @@
     <script>
     {{{state}}}
     app.yui.use('skinner', function (Y) {
-        // any specific initialization needed?
+        Y.Skinner.runUnitTests();
+        Y.Skinner.initFromQuery();
     });
     </script>
 

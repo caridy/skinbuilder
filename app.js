@@ -37,6 +37,15 @@ app.get('/', yui.expose(), function (req, res, next) {
     res.render('index', {});
 });
 
+app.get('/bookmarklet.html', yui.expose(), function (req, res, next) {
+    res.render('bookmarklet', {});
+});
+
+app.get('/ctrl.js', yui.expose(), function (req, res, next) {
+    res.header("Content-Type", "text/javascript");
+    res.render('ctrl.js', {});
+});
+
 // locator initialiation
 new Locator({
     buildDirectory: 'build'
@@ -57,7 +66,9 @@ new Locator({
                 libfs = require("fs"),
                 urls = [
                     'http://localhost:3000/docs.html',
-                    'http://localhost:3000/index.html'
+                    'http://localhost:3000/index.html',
+                    'http://localhost:3000/bookmarklet.html',
+                    'http://localhost:3000/ctrl.js'
                 ];
 
             // generating html file

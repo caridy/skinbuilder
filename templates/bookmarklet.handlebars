@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" class='page-background'>
+<head>
+    <meta charset="utf-8">
+    <title>Skin Builder Bookmarklet</title>
+    <link rel="stylesheet" href="/assets/bookmarklet-demo.css" id="skinner-ouput">
+</head>
+<body class="pure-skin-mine">
+
+    <p>
+    Step by step to inject Skin Builder in any page:
+    </p>
+    <ol>
+        <li>Bookmark the <a id="bookmarklet" href="#">Skin Builder</a> link by dragging and dropping the link into the browser bookmarks bar.</li>
+        <li>Open any page and click on the bookmark to inject Skin Builder.</li>
+    </ol>
+
+    <ul id="widget-container">
+        {{> pure}}
+    </ul>
+
+    <script>
+    (function() {
+        function inject(d, w) {
+            var ie = w.navigator.userAgent.match(/MSIE\s/),
+                i = d.createElement("iframe"),
+                n = (ie ? ("<scri" + "pt>try{document.domain='#d';}catch(e){}</scr" + "ipt>").replace("#d", (d.domain = d.domain.toString())) : ""),
+                f = ("<!doctype html><html class='page-background'><head>" + n + "<sc" + "ript src='#c'></scri" + "pt></head><body class='yui3-skin-mine pure-skin-mine yui3-loading'></body></html>").replace("#c", "/ctrl.js"),
+                s = ("javascript:window.onload=function(){document.open().write(\"#f\");document.close();};").replace("#f", f);
+            ie && i.setAttribute("src", s);
+            i.setAttribute("frameBorder", "0");
+            i.setAttribute("name", "skinbuilder");
+            i.style.cssText = "position:absolute;width:auto;height:0;";
+            if (d.body) {
+                d.body.appendChild(i);
+            } else {
+                d.appendChild(i);
+            } if (!ie) {
+                d = i.contentWindow.document;
+                d.open().write(f);
+                d.close();
+            }
+        }
+        document.getElementById('bookmarklet').href = 'javascript:(' + inject.toString() + ')(document, window);';
+    })();
+    </script>
+
+</body>
+</html>

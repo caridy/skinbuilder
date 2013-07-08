@@ -3,39 +3,34 @@
 <head>
 <meta charset="utf-8">
 <title>Skin Builder</title>
-
-<link rel="icon" 
-      type="image/png" 
-      href="http://jconniff.github.io/skinner/assets/images/favicon.png">
-
-<link rel="stylesheet" href="https://yui-s.yahooapis.com/3.9.1/build/cssnormalize/cssnormalize-min.css">
-<link rel="stylesheet" href="https://yui-s.yahooapis.com/3.9.1/build/cssgrids/grids-min.css">
-<link rel="stylesheet" href="/assets/styles.css">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://yui-s.yahooapis.com/3.9.1/build/cssnormalize/cssnormalize-min.css">
+    <link rel="stylesheet" href="https://yui-s.yahooapis.com/3.9.1/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="/assets/styles.css">
 </head>
-
 <body class="yui3-skin-mine pure-skin-mine yui3-loading">
 
-<div class="splash hero">
-    <h1>YUI Skin Builder</h1>
-    <h2>An App for Generating Custom Skin CSS</h2>
-    <div id="spinner"></div>
-</div>
-
-<!-- Mega container div to hide contents of page until done loading -->
-<div class="mega">
-
-    <div id="log" class="yui3-skin-sam"></div><!-- console log for functional testing feedback -->
-
-    <div id="headerMenu">
-        <ul>
-            <li><a class="heading-main-ui">YUI Skin Builder</a></li>
-            <li><a class="tag-line">An App for Generating Custom Skin CSS</a></li>
-            <li><a href="docs.html">Documentation</a></li>
-            <li><a href="https://github.com/yui/skinbuilder/issues">File an issue</a></li>
-        </ul>
+    <div class="splash hero">
+        <h1>YUI Skin Builder</h1>
+        <h2>An App for Generating Custom Skin CSS</h2>
+        <div id="spinner"></div>
     </div>
 
-    <div id="tabview-controls-container">
+    <!-- Mega container div to hide contents of page until done loading -->
+    <div class="mega">
+
+        <div id="log" class="yui3-skin-sam"></div><!-- console log for functional testing feedback -->
+
+        <div id="headerMenu">
+            <ul>
+                <li><a class="heading-main-ui">YUI Skin Builder</a></li>
+                <li><a class="tag-line">An App for Generating Custom Skin CSS</a></li>
+                <li><a href="docs.html">Documentation</a></li>
+                <li><a href="https://github.com/yui/skinbuilder/issues">File an issue</a></li>
+            </ul>
+        </div>
+
+        <div id="tabview-controls-container">
     <div id="tabview-controls">
         <ul>
             <li><a class="tab-color" href="#tab-palette">Style</a></li>
@@ -375,9 +370,9 @@
 </div><!-- end tabview-controls-container for fixed position -->
 
 
-    <!-- this UL is the container for all previewed widgets -->
-    <ul id="widget-container">
-        <!-- YUI Widgets Markup -->
+        <!-- this UL is the container for all previewed widgets -->
+        <ul id="widget-container">
+            <!-- YUI Widgets Markup -->
 
     <li class="sb-preview-button"><div class="widget-preview-label widget-preview-label-button">Button</div>
         <button class="checkbox yui3-button yui3-button-selected" id="yui_3_6_0_1_1343853873543_37">Button 3</button>
@@ -548,7 +543,7 @@
 
 <!-- End of YUI Widgets Markup /-->
 
-        <!-- Pure Markup -->
+            <!-- Pure Markup -->
 
     <li class="sb-preview-form"><div class="widget-preview-label">Forms - Checkboxes and Radios</div>
         <form class="pure-form">
@@ -844,14 +839,14 @@
 
 <!-- End of Pure Markup /-->
 
-    </ul>
-    <!-- end of container for widget previews -->
+        </ul>
+        <!-- end of container for widget previews -->
 
-</div>
-<!-- Close Mega container div to hide contents of page until done loading -->
+    </div>
+    <!-- Close Mega container div to hide contents of page until done loading -->
 
-<script>
-
+    <script>
+    
 (function (g) {
 // -- Namespaces --
 g.app || (g.app = {});
@@ -863,21 +858,11 @@ g.app.yui = {"use":function bootstrap() { var self = this, d = document, head = 
 g.YUI_config.seed = ["/yui-3.10.3/yui/yui-debug.js","/skinbuilder-0.0.1/loader-skinbuilder/loader-skinbuilder-debug.js"];
 }(this));
 
-app.yui.use('skinner', function (Y) {
-    // any specific initialization needed?
-});
-</script>
+    app.yui.use('skinner', function (Y) {
+        Y.Skinner.runUnitTests();
+        Y.Skinner.initFromQuery();
+    });
+    </script>
 
 </body>
 </html>
-<!--
-Copyright 2012 Yahoo! Inc. All rights reserved.
-
-Redistribution and use of this software in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-    * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-    * Neither the name of Yahoo! Inc. nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission of Yahoo! Inc.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->

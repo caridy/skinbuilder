@@ -21,3 +21,21 @@ Please submit all issues and feature requests through Github. It makes it easy t
 - Outputs CSS
 - Get Link that contains query string with all values needed to reproduce current skin
 - Skin Forms, Tables, Menus, and Buttons from Pure
+
+## How to install and run the express app
+
+```
+git clone https://github.com/yui/skinbuilder.git
+cd skinbuilder
+npm install
+```
+
+Run the express app to generate the files:
+
+```
+node app.js
+```
+
+You can now navigate to http://localhost:3000/index.html
+
+or you can break the program (ctrl+c) and run the generated `index.html` directly.

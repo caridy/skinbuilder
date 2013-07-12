@@ -15,7 +15,6 @@ YUI.add('skinner-popup', function (Y) {
     mega.setContent(Y.Template._cache["skinbuilder/partials/controls"]({}));
 
     container.appendTo(mega);
-    container.setContent(Y.Template._cache["skinbuilder/partials/pure"]({}));
 
     // getting skinner ready
     Y.use('skinner', function (Y) {
@@ -52,16 +51,16 @@ YUI.add('skinner-popup', function (Y) {
                             }
 
                             outerY.one('[name=skinbuilder]').setStyles({
-                                height: '500px',
+                                height: '300px',
                                 width: '100%',
                                 top: 0,
                                 left: 0,
                                 right: 0,
-                                border: "1px solid",
+                                border: "5px solid",
                                 margin: 0,
                                 padding: 0
                             });
-                            outerY.one('body').setStyle('margin-top', '510px');
+                            outerY.one('body').setStyle('margin-top', '310px');
 
                             Y.Skinner.init(config || {});
                         }
